@@ -303,9 +303,15 @@ public class InsurancePolicy {
     }
   }
   
+  
 //  @Override 
+//  // equals checks if insurance policies have the same policy number and same expiration date
 //  public boolean equals(Object object) {
-//    this.getPolicyNumber() == (InsurancePolicy)object.get;
+//    if (this.getPolicyNumber() == (String)object.getPolicyNumber() && this.getExpirationDate() == (Date)object.getExpirationDate()) {
+//      return true;
+//    } else {
+//      return false;
+//    }
 //  }
   
   
