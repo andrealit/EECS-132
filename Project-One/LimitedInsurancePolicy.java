@@ -70,23 +70,20 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   
   // G) applyYearlyLimit if policy has a yearly limit and (claim + yeartime benefit) exceeds yearly limit, amount is reduced by excess
   public double applyAnnualLimit(double claim) {
-    if (hasAnnualLimit()) {
-      if ((claim + getYearlyBenefit()) > getAnnualLimit()) {
-        return claim - ((claim + getYearlyBenefit()) - getAnnualLimit());
-      }
+    if (hasAnnualLimit() == true && (claim + getYearlyBenefit()) > getAnnualLimit()) {
+      return claim - ((claim + getYearlyBenefit()) - getAnnualLimit());
+    } else {
+      return claim;
     }
-    return claim;
   }
   
   // H) applyLifetimeLimit has a lifetime limit and this checks to see if the claim exceeds it and returns the largest claim
   public double applyLifetimeLimit(double claim) {
-    
-    if (hasLifetimeLimit()) {
-      if ((claim + getLifetimeBenefit()) > getLifetimeLimit()) {
-        return claim - ((claim + getLifetimeBenefit()) - getLifetimeLimit());
-      }
+    if (hasLifetimeLimit() == true && (claim + getLifetimeBenefit()) > getLifetimeLimit()) {
+      return claim - ((claim + getLifetimeBenefit()) - getLifetimeLimit());
+    } else {
+      return claim;
     }
-    return claim;
   }
   
 }
