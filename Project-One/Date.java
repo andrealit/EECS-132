@@ -5,327 +5,104 @@
 
 import java.util.Scanner;
 
-public class InsurancePolicy {
+public class Date {
   
   /* FIELDS */
+  private int day = 1;
+  private int month = 1;
+  private int year = 1;
   
-  private String policyNumber = "";
-  private double copay = 0.0;
-  private double deductible = 0.0;
-  private double amountApplied = 0.0;
-  private double actuarialValue = 0.0;
-  private boolean hasOutOfPocketLimit = false;
-  private double outOfPocketLimit = 0.0;
-  private double yearlyOutOfPocketCost = 0.0;
-  
-  private double yearlyBenefit = 0.0;
-  private double lifetimeBenefit = 0.0;
-  private double premium = 0.0;
-  private double profitMargin = 0.0;
-  private double expectedTenYearBenefit = 0.0;
-  private double claim = 0.0;
-  private double outOfPocketCost = 0.0;
-  
-  private boolean hasAnnualLimit = false;
-  private double annualLimit = 0.0;
-  private boolean hasLifetimeLimit = false;
-  private double lifetimeLimit = 0.0;
-  
-  private boolean hasSupplementalInsurance = false;
-  private InsurancePolicy supplementalInsurance = null;
-  private Date expirationDate = null;
-
-  
-  /* CONSTRUCTORS */ 
-  
-  // A constructor for a less restricted, simple insurance policy 
-  public InsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
-                         double actuarialValue) {
-    this.policyNumber = policyNumber;
-    this.expirationDate = expirationDate;
-    this.copay = copay;
-    this.deductible = deductible;
-    this.actuarialValue = actuarialValue;
+  /* CONSTRUCTORS */
+  public Date (int day, int month, int year) {
+    this.day = day;
+    this.month = month;
+    this.year = year;
   }
-  
-  // More complex constructor
-  public InsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
-                         double actuarialValue, boolean hasAnnualLimit, double annualLimit, 
-                         boolean hasOutOfPocketLimit, double outOfPocketLimit, boolean hasLifetimeLimit, 
-                         double lifetimeLimit, double expectedTenYearBenefit, double profitMargin, 
-                         InsurancePolicy supplementalInsurance) {
-    this(policyNumber, expirationDate, copay, deductible, actuarialValue);
-    this.hasAnnualLimit = hasAnnualLimit;
-    this.annualLimit = annualLimit;
-    this.hasOutOfPocketLimit = hasOutOfPocketLimit;
-    this.outOfPocketLimit = outOfPocketLimit;
-    this.hasLifetimeLimit = hasLifetimeLimit;
-    this.lifetimeLimit = lifetimeLimit;
-    this.expectedTenYearBenefit = expectedTenYearBenefit;
-    this.profitMargin = profitMargin;
-    if (supplementalInsurance != null) {
-      this.hasSupplementalInsurance = true;
-    }
-    this.supplementalInsurance = supplementalInsurance;
-  }
- 
   
   /* METHODS */
   
-  // A) returns policy number
-  public String getPolicyNumber() {
-    return policyNumber;
+  // A) returns current day
+  public int getDay() {
+    return day;
   }
   
-  // B) sets copay to user input
-  public void setCopay(double copay) {
-    this.copay = copay;
+  // B) returns current month
+  public int getMonth() {
+    return month;
   }
   
-  // C) returns copay 
-  public double getCopay() {
-    return copay;
+  // C) returns current year
+  public int getYear() {
+    return year;
   }
   
-  // D) sets yearly deductible for policy
-  public void setDeductible(double deductible) {
-    this.deductible = deductible;
-  }
-  
-  // E) returns deductible 
-  public double getDeductible() {
-    return deductible;
-  }
-  
-  // F) returns the amount, applied so far to this year, to the deductible
-  public double getAmountAppliedToDeductible() {
-    return amountApplied;
-  }
-  
-  // G) sets actuarial value
-  public void setActuarialValue(double actuarialValue) {
-    this.actuarialValue = actuarialValue;
-  }
-  
-  // H) returns actuarial value (the percent of claims the policy will cover)
-  public double getActuarialValue() {
-    return actuarialValue;
-  }
-  
-  // I) checks to see if policy has pocket limit, and if so, sets it
-  public void setOutOfPocketLimit(boolean hasOutOfPocketLimit, double outOfPocketLimit) {
-    this.hasOutOfPocketLimit = hasOutOfPocketLimit;
-    if (this.hasOutOfPocketLimit) {
-      this.outOfPocketLimit = outOfPocketLimit;
-    }
-  }
-  
-  // J) returns true if policy has out-of-pocket limit, false if it doesn't
-  public boolean hasOutOfPocketLimit() {
-    return hasOutOfPocketLimit;
-  }
-  
-  // K) returns out-of-pocket limit. If no pocket limit, method returns a non-positive value.
-  public double getOutOfPocketLimit() {
-    if (hasOutOfPocketLimit && outOfPocketLimit > 0) {
-      return outOfPocketLimit;
-    } else {
-      return 0.0;
-    }
-  }
-  
-  // L) returns the amount this policy has paid so far this year
-  public double getYearlyBenefit() {
-    return yearlyBenefit;
-  }
-  
-  // M) returns the amount the policy paid so far in total
-  public double getLifetimeBenefit() {
-    return lifetimeBenefit;
-  }
-  
-  // N) adds a supplemental policy (also an InsurancePolicy) to the existing policy, and indicates that the current policy has a supplemental one.
-  public void setSupplementalInsurance(InsurancePolicy policy) {
-    hasSupplementalInsurance = true;
-    this.supplementalInsurance = policy;
-  }
-  
-  // O) returns supplementalInsurance
-  public InsurancePolicy getSupplementalInsurance() {
-    if (hasSupplementalInsurance) {
-      return supplementalInsurance;
-    } else {
-      return null;
-    }
-  }
-  
-  // P) returns end date of policy
-  public Date getExpirationDate() {
-    return expirationDate;
-  }
-  
-  // Q) returns the premium of the policy
-  public double getPremium() {
-    return premium;
-  }
-  
-  // R) sets the profit margin, a percentage of what the company wants to earn
-  public void setProfitMargin(double profitMargin) {
-    this.profitMargin = profitMargin;
-  }
-  
-  // S) returns the profit margin for the policy
-  public double getProfitMargin() {
-    return profitMargin;
-  }
-  
-  // T) returns the amount the policy expects to pay in 10 years
-  public void setExpectedTenYearBenefit(double expectedBenefit) {
-    this.expectedTenYearBenefit = expectedBenefit;
-  }
-  
-  // U) returns the expected amount paid out by the policy
-  public double getExpectedTenYearBenefit() {
-    return expectedTenYearBenefit;
-  }
-  
-  // V) returns the user claim minus copay
-  public double applyCopay(double claim) {
-    return claim -= copay;
-  }
-  
-  // W) calculates the amount user must pay before the insurance policy pays a claim
-  public double applyDeductible(double claim) {
-    // checks if the amount applied to the deductible is less than deductible
-    if (getAmountAppliedToDeductible() < getDeductible()) {
-      // if difference results in negative
-      if (claim - (getDeductible() - getAmountAppliedToDeductible()) < 0) {
-        amountApplied = claim;
-        claim = 0;
-      } else {
-        // takes difference between claim and deductible for new claim, get amountApplied from applied plus deductible, 
-        claim = claim - (getDeductible() - getAmountAppliedToDeductible());
-        amountApplied = getAmountAppliedToDeductible() + (getDeductible() - getAmountAppliedToDeductible());
+  // D) returns 0 if dates are same, positive number(1) if this date is later than input, and negative number(-1) if date is earlier
+  public int compareTo(Date date) {
+    if (this.getYear() == date.getYear()) {
+      if (this.getMonth() == date.getMonth()) {
+        if (this.getDay() == date.getDay()) {
+          return 0;
+        } else if (this.getDay() > date.getDay()) {
+          return 1;
+        }
+      } else if (this.getMonth() > date.getMonth()) {
+        return 1;
       }
+    } else if (this.getYear() > date.getYear()) {
+      return 1;
     }
-    return claim;
+    return -1;
   }
   
-  // X) returns claim multiplied by actuarial value percent
-  public double applyActuarialValue(double claim) {
-    return claim * getActuarialValue();
-  }
-  
-  // Y) returns the call of processClaim if policy has supplemental insurance, else returns claim
-  public double applySupplementalInsurance(double claim, Date date){
-    if (this.getSupplementalInsurance() != null){
-      return this.getSupplementalInsurance().processClaim(claim, date);
-    } else {
-      return claim;
-    }
-  }
-  
-  /* Claim Processing
-   * 1) if date is after expiration date, claim value is returned
-   * 2) claim is reduced by copay
-   * 3) claim is reduced by deductible
-   * 4) claim is reduced by actuarial value
-   * 5) reduced claim is now the benefit, and out-of-pocket = initial claim - benefit
-   * 6) if supplemental policy exists, out-of-pocket - supplemental
-   * 7) if out of pocket limit exists, and the (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
-   * out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
-   * 8) the benefit is added to both the yearly benefit and the lifetime benefit
-   * 9) out of pocket cost added to yearly out of pocket cost
-   * 10) out of pocket cost is returned
-   * 
-   * */
-  
-  // Z) takes 2 inputs: amount claimed and date claimed, and returns the amount user must contribute
-  public double processClaim(double claim, Date date) {
-    
-    // if date is after expiration date, returns claim
-    if (this.getExpirationDate().compareTo(date) <= 0) {
-      this.renewPolicy();
-      this.premium();
-      return claim;
-    }
-    
-    double originalClaim = claim;
-    // reduces by copay
-    claim = this.applyCopay(claim);
-    
-    // reduces by deductible
-    claim = this.applyDeductible(claim);
-    return claim;
-//    
-//    // reduces by actuarial
-//    claim = this.applyActuarialValue(claim);
-//    
-//    // sets a local variable benefit to the reduced claim
-//    double benefit = claim;
-//    
-//    // sets a local variable to current out of pocket cost
-//    double outOfPocketCost = originalClaim - claim;
-//    
-//    // reduces out of pocket cost by supplemental (if exists)
-//    if (hasSupplementalInsurance) {
-//      if (outOfPocketCost - this.applySupplementalInsurance(claim, date) < 0) {
-//        outOfPocketCost = 0;
-//      } else {
-//        outOfPocketCost -= this.applySupplementalInsurance(claim, date);
-//      }
-//    }
-//  
-////   7) if out of pocket limit exists, and the (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
-////   out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
-//    if (hasOutOfPocketLimit && ((outOfPocketCost + yearlyOutOfPocketCost) > outOfPocketLimit)) {
-//      outOfPocketCost -= ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
-//      benefit += ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
-//    }
-//    
-//    yearlyBenefit += benefit;
-//    lifetimeBenefit += benefit;
-//    yearlyOutOfPocketCost += outOfPocketCost;
-//    return outOfPocketCost;
-  }
-  
-  // AA) resets the amount applied to the deductible, the yearly benefit, and out-of-pocket costs
-  public void renewPolicy() {
-    // expectedTenYearBenefit is adjusted adding yearly benefit to 90%
-    expectedTenYearBenefit = yearlyBenefit + (.9 * (expectedTenYearBenefit));
-    amountApplied = 0.0;
-    yearlyBenefit = 0.0;
-    yearlyOutOfPocketCost = 0.0;
-    expirationDate = new Date(expirationDate.getDay(), expirationDate.getMonth(), expirationDate.getYear() + 1);
-  }
-  
-  // AB) returns value x percent more than one tenth of expected ten year benefit. x is profit margin
-  public double premium() {
-    premium = ((.1 * getExpectedTenYearBenefit()) + (getProfitMargin() * (.1 * getExpectedTenYearBenefit())));
-    return premium;
-  }
-  
-  // AC) returns sum of the premium of this policy and the premium of any supplemental insurance policies
-  public double totalPremium() {
-    if (hasSupplementalInsurance) {
-      return getPremium() + getSupplementalInsurance().totalPremium();
-    } else {
-      return getPremium();
-    }
-  }
-  
-  // returns boolean and checks if insurance policies have the same policy number and same expiration date
+  // checks if two dates have the same day, month, and year
   @Override 
-  public boolean equals(Object otherPolicy) {
-    InsurancePolicy comparePolicy = (InsurancePolicy)otherPolicy;
+  public boolean equals(Object otherDate) {
+    Date compareDate = (Date)otherDate;
     
-    if (this.getPolicyNumber().equals(comparePolicy.getPolicyNumber()) && this.getExpirationDate() == comparePolicy.getExpirationDate()) {
+    if (this.getDay() == compareDate.getDay() && this.getMonth() == compareDate.getMonth() && this.getYear() == compareDate.getYear()) {
       return true;
     } else {
       return false;
     }
+    
   }
   
+  // converts date into an English representation 
+  @Override
+  public String toString() {
+    
+    // MONTHS
+    String printMonth = "";
+    if (this.getMonth() == 1) 
+      printMonth = "January";
+    else if (this.getMonth() == 2)
+      printMonth = "February";
+    else if (this.getMonth() == 3)
+      printMonth = "March";
+    else if (this.getMonth() == 4)
+      printMonth = "April";
+    else if (this.getMonth() == 5)
+      printMonth = "May";
+    else if (this.getMonth() == 6)
+      printMonth = "June";
+    else if (this.getMonth() == 7)
+      printMonth = "July";
+    else if (this.getMonth() == 8)
+      printMonth = "August";
+    else if (this.getMonth() == 9)
+      printMonth = "September";
+    else if (this.getMonth() == 10)
+      printMonth = "October";
+    else if (this.getMonth() == 11)
+      printMonth = "November";
+    else if (this.getMonth() == 12)
+      printMonth = "December";
+    else 
+      printMonth = "null";
+    
+    
+    return printMonth + " " + this.getDay() + ", " + this.getYear();
+  }
   
   
 }
