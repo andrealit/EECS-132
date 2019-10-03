@@ -9,9 +9,14 @@ import java.util.Scanner;
 public class LimitedInsurancePolicy extends InsurancePolicy {
   
   /* FIELDS */
+  
+  // hasAnnualLimit is boolean initialized to false
   private boolean hasAnnualLimit = false;
+  // annualLimit is double initialized to 0.0
   private double annualLimit = 0.0;
+  // hasLifetimeLimit is boolean initialized to false
   private boolean hasLifetimeLimit = false;
+  // lifetimeLimit is double initialized to 0.0
   private double lifetimeLimit = 0.0;
   
   /* CONSTRUCTORS */
@@ -158,7 +163,7 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   @Override 
   public double getExpectedTenYearBenefit() {
     if (hasLifetimeLimit() == true) {
-      return getLifetimeBenefit() - getOutOfPocketLimit();
+      return getLifetimeBenefit() - getLifetimeLimit();
     } else {
       // check work
       return 0.0;
