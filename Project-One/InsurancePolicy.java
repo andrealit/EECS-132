@@ -9,13 +9,21 @@ public class InsurancePolicy {
   
   /* FIELDS */
   
+  // policyNumber initialized to empty string
   private String policyNumber = "";
+  // copay is double initialized to 0.0
   private double copay = 0.0;
+  // deductible is double initialized to 0.0
   private double deductible = 0.0;
+  // amountApplied is double initialized to 0.0
   private double amountApplied = 0.0;
+  // actuarialValue is double initialized to 0.0
   private double actuarialValue = 0.0;
+  // set to null initially, changable in constructor
   private boolean hasOutOfPocketLimit = false;
+  // outOfPocketLimit is double initialized to 0.0
   private double outOfPocketLimit = 0.0;
+  // yearlyOutOfPocketCost is double initialized to 0.0
   private double yearlyOutOfPocketCost = 0.0;
   
   private double yearlyBenefit = 0.0;
@@ -24,7 +32,7 @@ public class InsurancePolicy {
   private double profitMargin = 0.0;
   private double expectedTenYearBenefit = 0.0;
   private double claim = 0.0;
-  private double outOfPocketCost = 0.0;
+
   
   private boolean hasAnnualLimit = false;
   private double annualLimit = 0.0;
@@ -34,6 +42,9 @@ public class InsurancePolicy {
   private boolean hasSupplementalInsurance = false;
   private InsurancePolicy supplementalInsurance = null;
   private Date expirationDate = null;
+  
+  private double benefit = 0.0;
+  private double outOfPocketCost = 0.0;
 
   
   /* CONSTRUCTORS */ 
@@ -102,7 +113,7 @@ public class InsurancePolicy {
     return amountApplied;
   }
   
-  // G) sets actuarial value
+  // G) sets actuarial value (must be decimal percent)
   public void setActuarialValue(double actuarialValue) {
     this.actuarialValue = actuarialValue;
   }
@@ -134,9 +145,19 @@ public class InsurancePolicy {
     }
   }
   
+  // EXTRA) sets yearlyBenefit
+  public void setYearlyBenefit(double yearlyBenefit) {
+    this.yearlyBenefit = yearlyBenefit;
+  }
+  
   // L) returns the amount this policy has paid so far this year
   public double getYearlyBenefit() {
     return yearlyBenefit;
+  }
+  
+  // EXTRA) sets lifetimeBenefit
+  public void setLifetimeBenefit(double lifetimeBenefit) {
+    this.lifetimeBenefit = lifetimeBenefit;
   }
   
   // M) returns the amount the policy paid so far in total
@@ -177,6 +198,26 @@ public class InsurancePolicy {
   // S) returns the profit margin for the policy
   public double getProfitMargin() {
     return profitMargin;
+  }
+  
+  // EXTRA) sets the benefit
+  public void setBenefit(double benefit) {
+    this.benefit = benefit;
+  }
+  
+  // EXTRA) gets the benefit
+  public double getBenefit() {
+    return benefit;
+  }
+  
+  // EXTRA) sets the out of pocket cost
+  public void setOutOfPocketCost(double outOfPocketCost) {
+    this.outOfPocketCost = outOfPocketCost;
+  }
+  
+  // EXTRA) gets the out of pocket cost
+  public double getOutOfPocketCost() {
+    return outOfPocketCost;
   }
   
   // T) returns the amount the policy expects to pay in 10 years
@@ -220,7 +261,7 @@ public class InsurancePolicy {
   public double applySupplementalInsurance(double claim, Date date){
     if (this.getSupplementalInsurance() != null){
       return this.getSupplementalInsurance().processClaim(claim, date);
-    } else {
+    } else { 
       return claim;
     }
   }
@@ -253,40 +294,47 @@ public class InsurancePolicy {
     double originalClaim = claim;
     // reduces by copay
     claim = this.applyCopay(claim);
+    System.out.println("after copay: " + claim);
     
     // reduces by deductible
     claim = this.applyDeductible(claim);
-    return claim;
-//    
-//    // reduces by actuarial
-//    claim = this.applyActuarialValue(claim);
-//    
-//    // sets a local variable benefit to the reduced claim
-//    double benefit = claim;
-//    
-//    // sets a local variable to current out of pocket cost
-//    double outOfPocketCost = originalClaim - claim;
-//    
-//    // reduces out of pocket cost by supplemental (if exists)
-//    if (hasSupplementalInsurance) {
-//      if (outOfPocketCost - this.applySupplementalInsurance(claim, date) < 0) {
-//        outOfPocketCost = 0;
-//      } else {
-//        outOfPocketCost -= this.applySupplementalInsurance(claim, date);
-//      }
-//    }
-//  
-////   7) if out of pocket limit exists, and the (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
-////   out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
-//    if (hasOutOfPocketLimit && ((outOfPocketCost + yearlyOutOfPocketCost) > outOfPocketLimit)) {
-//      outOfPocketCost -= ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
-//      benefit += ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
-//    }
-//    
-//    yearlyBenefit += benefit;
-//    lifetimeBenefit += benefit;
-//    yearlyOutOfPocketCost += outOfPocketCost;
-//    return outOfPocketCost;
+    System.out.println("after deductible: " + claim);
+    
+    // reduces by actuarial
+    claim = this.applyActuarialValue(claim);
+    System.out.println("after actuarial: " + claim);
+    
+    // sets benefit to the reduced claim
+    this.setBenefit(claim);
+    System.out.println("benefit: " + this.getBenefit());
+    
+    // sets outOfPocketcost to current out of pocket cost
+    this.setOutOfPocketCost(originalClaim - benefit);
+    System.out.println("out of pocket cost: " + outOfPocketCost);
+    
+    // reduces out of pocket cost by supplemental (if exists)
+    if (hasSupplementalInsurance) {
+      if (outOfPocketCost - this.applySupplementalInsurance(claim, date) < 0) {
+        outOfPocketCost = 0;
+        System.out.println("out of pocket cost: " + outOfPocketCost);
+      } else {
+        outOfPocketCost -= this.applySupplementalInsurance(claim, date);
+        System.out.println("out of pocket cost: " + outOfPocketCost);
+      }
+    }
+  
+//   7) if out of pocket limit exists, and (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
+//   out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
+    if (hasOutOfPocketLimit && ((outOfPocketCost + yearlyOutOfPocketCost) > outOfPocketLimit)) {
+      outOfPocketCost -= ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
+      benefit += ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
+    }
+    
+// Test here
+    yearlyBenefit += benefit;
+    lifetimeBenefit += benefit;
+    yearlyOutOfPocketCost += outOfPocketCost;
+    return outOfPocketCost;
   }
   
   // AA) resets the amount applied to the deductible, the yearly benefit, and out-of-pocket costs
