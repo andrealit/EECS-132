@@ -100,12 +100,57 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     }
   }
   
-  // processClaim: after computing benefit and claim, method does other stuff
+  
+  /* execute Claim Processing
+   * 11) if benefit causes yearlyBenefit > annualLimit, applyAnnualLimit
+   * 12) if benefit causes lifetimeBenefit > lifetimeLimit, applyLifetimeLimit
+   * 13) the total amount the benefit was decreased in the first two steps is the additional out-of-pocket cost
+   * 14) if there is a supplemental insurance policy, the additional out-of-pocket expenses are reduced by the supplemental insurance (use the appropriate method to do this)
+   * 15) the amount the benefit was reduced is subtracted from both the yearly benefit and the lifetime benefit
+   * 16) the additional out-of-pocket cost is added to the yearly out-of-pocket cost
+   * the sum of the out-of-pocket cost and the additional out-of-pocket cost is returned
+   * 
+   * */
+  // after computing benefit and out of pocket cost, 
+  // 
   @Override 
   public double processClaim(double claim, Date date) {
     // must call super. to refer something from parent class
-    // use get 
-    return getYearlyBenefit();
+    super.processClaim(claim, date);
+    
+    // if yearly benefit is greater than annual, applyAnnualLimit
+    if (this.getYearlyBenefit() > this.annualLimit) {
+      this.applyAnnualLimit(claim);
+    }
+    
+    // if lifetime benefit is greater than lifetime, applyLifetimeLimit
+    if (this.getLifetimeBenefit() > this.lifetimeLimit) {
+      this.applyLifetimeLimit(claim);
+    }
+    
+    // sets a local variable to additional out-of-pocket-cost
+    // the total amount the benefit decreased is the additional out-of-pocket-cost
+    double outOfPocketCostExtra = claim - this.getBenefit();
+    
+    // additional out of pocket costs are reduced by supplemental (if exists) 
+    if (this.getSupplementalInsurance() != null) {
+      if (outOfPocketCostExtra - this.applySupplementalInsurance(claim, date) < 0) {
+        outOfPocketCostExtra = 0;
+        System.out.println("additional out of pocket cost: " + outOfPocketCostExtra);
+      } else {
+        outOfPocketCostExtra -= this.applySupplementalInsurance(claim, date);
+        System.out.println("out of pocket cost: " + outOfPocketCostExtra);
+      }
+    }
+    
+    // the amount the benefit was reduced is subtracted from both yearlyBenefit 
+    this.setYearlyBenefit(this.getYearlyBenefit() - (claim - this.getBenefit()));
+    this.setLifetimeBenefit(this.getLifetimeBenefit() - (claim - this.getBenefit()));
+    
+    this.setDeductible(getOutOfPocketCost());
+    
+    // returns sum of outOfPocketCost and additional out-of-pocket
+    return this.getDeductible() + outOfPocketCostExtra;
   }
   
   // checks if policy has lifetime limit and returns no more than the difference between 
