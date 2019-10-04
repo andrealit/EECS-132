@@ -10,17 +10,18 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   
   /* FIELDS */
   
-  // hasAnnualLimit is boolean initialized to false
+  // the boolean whether annual limit exists. initialized to false
   private boolean hasAnnualLimit = false;
-  // annualLimit is double initialized to 0.0
+  // limit for yearly spending is double initialized to 0.0
   private double annualLimit = 0.0;
-  // hasLifetimeLimit is boolean initialized to false
+  // boolean whether lifetime limit exists. initialized to false
   private boolean hasLifetimeLimit = false;
-  // lifetimeLimit is double initialized to 0.0
+  // limit for lifetime spending is double initialized to 0.0
   private double lifetimeLimit = 0.0;
   
   /* CONSTRUCTORS */
   
+  // A constructor to create the limited insurance policy with annual and lifetime limits
   public LimitedInsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
                                 double actuarialValue, boolean hasAnnualLimit, double annualLimit, 
                                 boolean hasLifetimeLimit, double lifetimeLimit) {
@@ -31,14 +32,18 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     this.lifetimeLimit = lifetimeLimit;
   }
   
+  // A constructor to create the limited insurance policy with supplemental policy, expected benefits, and profit.
   public LimitedInsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
                                 double actuarialValue, boolean hasAnnualLimit, double annualLimit, 
                                 boolean hasOutOfPocketLimit, double outOfPocketLimit, boolean hasLifetimeLimit, 
                                 double lifetimeLimit, double expectedTenYearBenefit, double profitMargin, 
                                 InsurancePolicy supplementalInsurance) {
-    super(policyNumber, expirationDate, copay, deductible, actuarialValue, hasAnnualLimit, annualLimit, 
-          hasOutOfPocketLimit, outOfPocketLimit, hasLifetimeLimit, lifetimeLimit, expectedTenYearBenefit, profitMargin, 
+    super(policyNumber, expirationDate, copay, deductible, actuarialValue, hasOutOfPocketLimit, outOfPocketLimit, expectedTenYearBenefit, profitMargin, 
           supplementalInsurance);
+    this.hasAnnualLimit = hasAnnualLimit;
+    this.annualLimit = annualLimit;
+    this.hasLifetimeLimit = hasLifetimeLimit;
+    this.lifetimeLimit = lifetimeLimit;
   }
   
   /* METHODS */
