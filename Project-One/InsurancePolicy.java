@@ -38,15 +38,6 @@ public class InsurancePolicy {
   private double expectedTenYearBenefit = 0.0;
   // claim is double initialized to 0.0
   private double claim = 0.0;
-
-  // hasAnnualLimit is boolean initialized to false
-  private boolean hasAnnualLimit = false;
-  // annualLimit is double initialized to 0.0
-  private double annualLimit = 0.0;
-  // hasLifetimeLimit is boolean initialized to false
-  private boolean hasLifetimeLimit = false;
-  // lifetimeLimit is double initialized to 0.0
-  private double lifetimeLimit = 0.0;
   
   // hasSupplementalInsurance is boolean initialized to false
   private boolean hasSupplementalInsurance = false;
@@ -66,6 +57,7 @@ public class InsurancePolicy {
   // A constructor for a less restricted, simple insurance policy 
   public InsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
                          double actuarialValue) {
+    super();
     this.policyNumber = policyNumber;
     this.expirationDate = expirationDate;
     this.copay = copay;
@@ -75,17 +67,12 @@ public class InsurancePolicy {
   
   // More complex constructor
   public InsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
-                         double actuarialValue, boolean hasAnnualLimit, double annualLimit, 
-                         boolean hasOutOfPocketLimit, double outOfPocketLimit, boolean hasLifetimeLimit, 
-                         double lifetimeLimit, double expectedTenYearBenefit, double profitMargin, 
+                         double actuarialValue, boolean hasOutOfPocketLimit, double outOfPocketLimit, 
+                         double expectedTenYearBenefit, double profitMargin, 
                          InsurancePolicy supplementalInsurance) {
     this(policyNumber, expirationDate, copay, deductible, actuarialValue);
-    this.hasAnnualLimit = hasAnnualLimit;
-    this.annualLimit = annualLimit;
     this.hasOutOfPocketLimit = hasOutOfPocketLimit;
     this.outOfPocketLimit = outOfPocketLimit;
-    this.hasLifetimeLimit = hasLifetimeLimit;
-    this.lifetimeLimit = lifetimeLimit;
     this.expectedTenYearBenefit = expectedTenYearBenefit;
     this.profitMargin = profitMargin;
     if (supplementalInsurance != null) {
@@ -199,10 +186,14 @@ public class InsurancePolicy {
     return expirationDate;
   }
   
-  // Q) returns the premium of the policy
-  public double getPremium() {
+  // EXTRA) calculates the premium
+  public void calculatePremium() {
     this.premium = (0.1* getExpectedTenYearBenefit()) + (this.getProfitMargin() * (0.1 * this.getExpectedTenYearBenefit()));
     this.premium = premium;
+  }
+  
+  // Q) returns the premium (the amount the policy holder must pay to buy the policy)
+  public double getPremium() {
     return premium;
   }
   
@@ -260,7 +251,8 @@ public class InsurancePolicy {
         amountApplied = claim;
         claim = 0;
       } else {
-        // takes difference between claim and deductible for new claim, get amountApplied from applied plus deductible, 
+        // takes difference between claim and deductible for new claim. 
+        // amountApplied is from amount applied to deductible plus the difference between it and deductible
         claim = claim - (getDeductible() - getAmountAppliedToDeductible());
         amountApplied = getAmountAppliedToDeductible() + (getDeductible() - getAmountAppliedToDeductible());
       }
@@ -371,6 +363,7 @@ public class InsurancePolicy {
   // AC) returns sum of the premium of this policy and the premium of any supplemental insurance policies
   public double totalPremium() {
     if (hasSupplementalInsurance) {
+      getSupplementalInsurance().calculatePremium();
       return getPremium() + getSupplementalInsurance().totalPremium();
     } else {
       return getPremium();
@@ -388,5 +381,6 @@ public class InsurancePolicy {
       return false;
     }
   }
+  
   
 }
