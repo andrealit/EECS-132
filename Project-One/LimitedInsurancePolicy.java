@@ -116,11 +116,9 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
    * the sum of the out-of-pocket cost and the additional out-of-pocket cost is returned
    * 
    * */
-  // after computing benefit and out of pocket cost, 
-  // 
   @Override 
   public double processClaim(double claim, Date date) {
-    // must call super. to refer something from parent class
+    // must call super to refer something from parent class
     super.processClaim(claim, date);
     
     // if yearly benefit is greater than annual, applyAnnualLimit
@@ -158,16 +156,22 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     return this.getDeductible() + outOfPocketCostExtra;
   }
   
-  // checks if policy has lifetime limit and returns no more than the difference between 
-  // lifetime benefit and lifetime limit
+  // if policy has lifetime limit, returns no more than the difference between lifetime benefit and lifetime limit
   @Override 
-  public double getExpectedTenYearBenefit() {
-    if (hasLifetimeLimit() == true) {
-      return getLifetimeBenefit() - getLifetimeLimit();
+  public double getExpectedTenYearBenefit() {  
+    super.getExpectedTenYearBenefit();
+    
+    if (hasLifetimeLimit() == true) { 
+      if (getLifetimeBenefit() - getLifetimeLimit() < 0) {
+        return 0.0;
+      } else {
+        return getLifetimeBenefit() - getLifetimeLimit();
+      }
     } else {
-      // check work
+      //return expectedTenYearBenefit;
       return 0.0;
     }
+    
   }
   
 }
