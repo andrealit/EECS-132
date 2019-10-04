@@ -19,31 +19,45 @@ public class InsurancePolicy {
   private double amountApplied = 0.0;
   // actuarialValue is double initialized to 0.0
   private double actuarialValue = 0.0;
-  // set to null initially, changable in constructor
+  // hasOutOfPocketLimit is boolean initialized to false
   private boolean hasOutOfPocketLimit = false;
   // outOfPocketLimit is double initialized to 0.0
   private double outOfPocketLimit = 0.0;
   // yearlyOutOfPocketCost is double initialized to 0.0
   private double yearlyOutOfPocketCost = 0.0;
   
+  // yearlyBenefit is double initialized to 0.0
   private double yearlyBenefit = 0.0;
+  // lifetimeBenefit is double initialized to 0.0
   private double lifetimeBenefit = 0.0;
+  // premium is double initialized to 0.0
   private double premium = 0.0;
+  // profitMargin is double initialized to 0.0
   private double profitMargin = 0.0;
+  // expectedTenYearBenefit is double initialized to 0.0
   private double expectedTenYearBenefit = 0.0;
+  // claim is double initialized to 0.0
   private double claim = 0.0;
 
-  
+  // hasAnnualLimit is boolean initialized to false
   private boolean hasAnnualLimit = false;
+  // annualLimit is double initialized to 0.0
   private double annualLimit = 0.0;
+  // hasLifetimeLimit is boolean initialized to false
   private boolean hasLifetimeLimit = false;
+  // lifetimeLimit is double initialized to 0.0
   private double lifetimeLimit = 0.0;
   
+  // hasSupplementalInsurance is boolean initialized to false
   private boolean hasSupplementalInsurance = false;
+  // supplementalInsurance is InsurancePolicy with null
   private InsurancePolicy supplementalInsurance = null;
+  // expirationDate is of type Date class with null
   private Date expirationDate = null;
   
+  // benefit is double initialized to 0.0
   private double benefit = 0.0;
+  // outOfPocketCost is double initialized to 0.0
   private double outOfPocketCost = 0.0;
 
   
@@ -187,6 +201,8 @@ public class InsurancePolicy {
   
   // Q) returns the premium of the policy
   public double getPremium() {
+    this.premium = (0.1* getExpectedTenYearBenefit()) + (this.getProfitMargin() * (0.1 * this.getExpectedTenYearBenefit()));
+    this.premium = premium;
     return premium;
   }
   
@@ -221,8 +237,8 @@ public class InsurancePolicy {
   }
   
   // T) returns the amount the policy expects to pay in 10 years
-  public void setExpectedTenYearBenefit(double expectedBenefit) {
-    this.expectedTenYearBenefit = expectedBenefit;
+  public void setExpectedTenYearBenefit(double expectedTenYearBenefit) {
+    this.expectedTenYearBenefit = expectedTenYearBenefit;
   }
   
   // U) returns the expected amount paid out by the policy
@@ -347,9 +363,8 @@ public class InsurancePolicy {
     expirationDate = new Date(expirationDate.getDay(), expirationDate.getMonth(), expirationDate.getYear() + 1);
   }
   
-  // AB) returns value x percent more than one tenth of expected ten year benefit. x is profit margin
+  // AB) returns premium
   public double premium() {
-    premium = ((.1 * getExpectedTenYearBenefit()) + (getProfitMargin() * (.1 * getExpectedTenYearBenefit())));
     return premium;
   }
   
@@ -373,7 +388,5 @@ public class InsurancePolicy {
       return false;
     }
   }
-  
-  
   
 }
