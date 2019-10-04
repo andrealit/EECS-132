@@ -159,7 +159,7 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   // if policy has lifetime limit, returns no more than the difference between lifetime benefit and lifetime limit
   @Override 
   public double getExpectedTenYearBenefit() {  
-    super.getExpectedTenYearBenefit();
+    double expectedTenYearBenefit = super.getExpectedTenYearBenefit();
     
     if (hasLifetimeLimit() == true) { 
       if (getLifetimeBenefit() - getLifetimeLimit() < 0) {
@@ -168,8 +168,7 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
         return getLifetimeBenefit() - getLifetimeLimit();
       }
     } else {
-      //return expectedTenYearBenefit;
-      return 0.0;
+      return expectedTenYearBenefit;
     }
     
   }
