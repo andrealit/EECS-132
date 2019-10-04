@@ -5,7 +5,7 @@
 
 import java.util.Scanner;
 
-// LimitedInsurancePolicy class has all same methods as InsurancePolicy plus additional methods
+// LimitedInsurancePolicy is an insurance policy, but sets specific limits.
 public class LimitedInsurancePolicy extends InsurancePolicy {
   
   /* FIELDS */
@@ -110,17 +110,7 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     }
   }
   
-  
-  /* execute Claim Processing
-   * 11) if benefit causes yearlyBenefit > annualLimit, applyAnnualLimit
-   * 12) if benefit causes lifetimeBenefit > lifetimeLimit, applyLifetimeLimit
-   * 13) the total amount the benefit was decreased in the first two steps is the additional out-of-pocket cost
-   * 14) if there is a supplemental insurance policy, the additional out-of-pocket expenses are reduced by the supplemental insurance (use the appropriate method to do this)
-   * 15) the amount the benefit was reduced is subtracted from both the yearly benefit and the lifetime benefit
-   * 16) the additional out-of-pocket cost is added to the yearly out-of-pocket cost
-   * the sum of the out-of-pocket cost and the additional out-of-pocket cost is returned
-   * 
-   * */
+  // execute additional steps of Claim Processing, tailored to limited.
   @Override 
   public double processClaim(double claim, Date date) {
     // must call super to refer something from parent class
@@ -144,10 +134,8 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     if (this.getSupplementalInsurance() != null) {
       if (outOfPocketCostExtra - this.applySupplementalInsurance(claim, date) < 0) {
         outOfPocketCostExtra = 0;
-        System.out.println("additional out of pocket cost: " + outOfPocketCostExtra);
       } else {
         outOfPocketCostExtra -= this.applySupplementalInsurance(claim, date);
-        System.out.println("out of pocket cost: " + outOfPocketCostExtra);
       }
     }
     
@@ -164,9 +152,11 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   // if policy has lifetime limit, returns no more than the difference between lifetime benefit and lifetime limit
   @Override 
   public double getExpectedTenYearBenefit() {  
+    // local variable expectedTenYearBenefit 
     double expectedTenYearBenefit = super.getExpectedTenYearBenefit();
     
     if (hasLifetimeLimit() == true) { 
+      // if value is negative, return 0
       if (getLifetimeBenefit() - getLifetimeLimit() < 0) {
         return 0.0;
       } else {
