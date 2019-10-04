@@ -5,13 +5,14 @@
 
 import java.util.Scanner;
 
+// An insurance policy that calculates the users needs
 public class InsurancePolicy {
   
   /* FIELDS */
   
-  // policyNumber initialized to empty string
+  // policyNumber is value initialized to empty string
   private String policyNumber = "";
-  // copay is double initialized to 0.0
+  // copay is starting amount before policy, double initialized to 0.0
   private double copay = 0.0;
   // deductible is double initialized to 0.0
   private double deductible = 0.0;
@@ -57,7 +58,6 @@ public class InsurancePolicy {
   // A constructor for a less restricted, simple insurance policy 
   public InsurancePolicy(String policyNumber, Date expirationDate, double copay, double deductible, 
                          double actuarialValue) {
-    super();
     this.policyNumber = policyNumber;
     this.expirationDate = expirationDate;
     this.copay = copay;
@@ -186,12 +186,6 @@ public class InsurancePolicy {
     return expirationDate;
   }
   
-  // EXTRA) calculates the premium
-  public void calculatePremium() {
-    this.premium = (0.1* getExpectedTenYearBenefit()) + (this.getProfitMargin() * (0.1 * this.getExpectedTenYearBenefit()));
-    this.premium = premium;
-  }
-  
   // Q) returns the premium (the amount the policy holder must pay to buy the policy)
   public double getPremium() {
     return premium;
@@ -274,20 +268,8 @@ public class InsurancePolicy {
     }
   }
   
-  /* Claim Processing
-   * 1) if date is after expiration date, claim value is returned
-   * 2) claim is reduced by copay
-   * 3) claim is reduced by deductible
-   * 4) claim is reduced by actuarial value
-   * 5) reduced claim is now the benefit, and out-of-pocket = initial claim - benefit
-   * 6) if supplemental policy exists, out-of-pocket - supplemental
-   * 7) if out of pocket limit exists, and the (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
-   * out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
-   * 8) the benefit is added to both the yearly benefit and the lifetime benefit
-   * 9) out of pocket cost added to yearly out of pocket cost
-   * 10) out of pocket cost is returned
-   * 
-   * */
+  
+  /* Claim Processing*/
   
   // Z) takes 2 inputs: amount claimed and date claimed, and returns the amount user must contribute
   public double processClaim(double claim, Date date) {
@@ -302,68 +284,61 @@ public class InsurancePolicy {
     double originalClaim = claim;
     // reduces by copay
     claim = this.applyCopay(claim);
-    System.out.println("after copay: " + claim);
     
     // reduces by deductible
     claim = this.applyDeductible(claim);
-    System.out.println("after deductible: " + claim);
     
     // reduces by actuarial
     claim = this.applyActuarialValue(claim);
-    System.out.println("after actuarial: " + claim);
     
     // sets benefit to the reduced claim
     this.setBenefit(claim);
-    System.out.println("benefit: " + this.getBenefit());
     
     // sets outOfPocketcost to current out of pocket cost
     this.setOutOfPocketCost(originalClaim - benefit);
-    System.out.println("out of pocket cost: " + outOfPocketCost);
     
     // reduces out of pocket cost by supplemental (if exists)
     if (hasSupplementalInsurance) {
       if (outOfPocketCost - this.applySupplementalInsurance(claim, date) < 0) {
         outOfPocketCost = 0;
-        System.out.println("out of pocket cost: " + outOfPocketCost);
       } else {
         outOfPocketCost -= this.applySupplementalInsurance(claim, date);
-        System.out.println("out of pocket cost: " + outOfPocketCost);
       }
     }
   
-//   7) if out of pocket limit exists, and (out-of-pocket + annual out-of-pocket) > out-of-pocket limit, the
-//   out of pocket cost is reduced by the amount the sum exceeds the limit, and this amount is added to benefit
+//   7) the out of pocket cost is reduced by the amount the sum exceeds the limit, and added to benefit
     if (hasOutOfPocketLimit && ((outOfPocketCost + yearlyOutOfPocketCost) > outOfPocketLimit)) {
       outOfPocketCost -= ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
       benefit += ((outOfPocketCost + yearlyOutOfPocketCost) - outOfPocketLimit);
     }
     
-// Test here
     yearlyBenefit += benefit;
     lifetimeBenefit += benefit;
     yearlyOutOfPocketCost += outOfPocketCost;
     return outOfPocketCost;
   }
   
-  // AA) resets the amount applied to the deductible, the yearly benefit, and out-of-pocket costs
+  // AA) resets the amount applied to the deductible, the yearly benefit, and yearly out-of-pocket cost
   public void renewPolicy() {
     // expectedTenYearBenefit is adjusted adding yearly benefit to 90%
-    expectedTenYearBenefit = yearlyBenefit + (.9 * (expectedTenYearBenefit));
+    expectedTenYearBenefit = getYearlyBenefit() + (.9 * (expectedTenYearBenefit));
     amountApplied = 0.0;
     yearlyBenefit = 0.0;
     yearlyOutOfPocketCost = 0.0;
-    expirationDate = new Date(expirationDate.getDay(), expirationDate.getMonth(), expirationDate.getYear() + 1);
+    expirationDate = new Date(expirationDate.getDay(), expirationDate.getMonth(), (expirationDate.getYear() + 1));
   }
   
   // AB) returns premium
   public double premium() {
+    this.premium = (0.1* getExpectedTenYearBenefit()) + (this.getProfitMargin() * (0.1 * this.getExpectedTenYearBenefit()));
+    this.premium = premium;
     return premium;
   }
   
   // AC) returns sum of the premium of this policy and the premium of any supplemental insurance policies
   public double totalPremium() {
     if (hasSupplementalInsurance) {
-      getSupplementalInsurance().calculatePremium();
+      getSupplementalInsurance().premium();
       return getPremium() + getSupplementalInsurance().totalPremium();
     } else {
       return getPremium();
