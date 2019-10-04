@@ -229,7 +229,11 @@ public class InsurancePolicy {
   
   // V) returns the user claim minus copay
   public double applyCopay(double claim) {
-    return claim -= copay;
+    if (claim < copay) {
+      return claim;
+    } else {
+      return claim -= copay;
+    }
   }
   
   // W) calculates the amount user must pay before the insurance policy pays a claim
@@ -270,14 +274,13 @@ public class InsurancePolicy {
   // Z) takes 2 inputs: amount claimed and date claimed, and returns the amount user must contribute
   public double processClaim(double claim, Date date) {
     
-    // if date is after expiration date, returns claim
+    // if date is after expiration date, returns claim & exits
     if (this.getExpirationDate().compareTo(date) <= 0) {
-      this.renewPolicy();
-      this.premium();
       return claim;
     }
     
     double originalClaim = claim;
+    
     // reduces by copay
     claim = this.applyCopay(claim);
     
@@ -327,7 +330,6 @@ public class InsurancePolicy {
   // AB) returns premium
   public double premium() {
     this.premium = (0.1* getExpectedTenYearBenefit()) + (this.getProfitMargin() * (0.1 * this.getExpectedTenYearBenefit()));
-    this.premium = premium;
     return premium;
   }
   
