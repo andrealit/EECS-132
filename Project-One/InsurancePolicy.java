@@ -3,8 +3,6 @@
 // Insurance company that focuses on processing, keeping track of policy information, 
 // process claims, and determines yearly premiums.
 
-import java.util.Scanner;
-
 // An insurance policy that calculates the users needs
 public class InsurancePolicy {
   
@@ -37,8 +35,6 @@ public class InsurancePolicy {
   private double profitMargin = 0.0;
   // expectedTenYearBenefit is double initialized to 0.0
   private double expectedTenYearBenefit = 0.0;
-  // claim is double initialized to 0.0
-  private double claim = 0.0;
   
   // hasSupplementalInsurance is boolean initialized to false
   private boolean hasSupplementalInsurance = false;
