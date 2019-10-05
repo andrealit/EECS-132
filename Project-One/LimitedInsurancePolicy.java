@@ -3,8 +3,6 @@
 // Insurance company that focuses on processing, keeping track of policy information, 
 // process claims, and determines yearly premiums.
 
-import java.util.Scanner;
-
 // LimitedInsurancePolicy is an insurance policy, but sets specific limits.
 public class LimitedInsurancePolicy extends InsurancePolicy {
   
