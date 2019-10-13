@@ -165,5 +165,3 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
     }
     
   }
-  
-}

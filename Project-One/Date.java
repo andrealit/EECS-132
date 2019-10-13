@@ -103,6 +103,4 @@ public class Date {
     
     return printMonth + " " + this.getDay() + ", " + this.getYear();
   }
-  
-  
-}
+
