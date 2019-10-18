@@ -53,6 +53,7 @@ public class HW2 {
 
       charOne = userInput.charAt(index);
       
+      
       if (charOne != userLetter) {
         builder.append(userInput.charAt(index));
       } else {
@@ -82,50 +83,59 @@ public class HW2 {
     StringBuilder builder = new StringBuilder(); 
     int currentPosition = 0;
     
-    // The goal of the loop is to compare strings and build new string while there is room in the string to compare
-    // Prereq: a String
-    // Loop invariant: The index 0 to i does not contain stringRemove.
-    while ((i < userInput.length()) && (userInput.length() >= (currentPosition + stringRemove.length()))) {
-      
-      // compare the two strings if they are the same or not
-      stringsMatch = true;
-      for (k = 0; k < stringRemove.length(); k = k+1) {
-        if (userInput.charAt(currentPosition + k) != stringRemove.charAt(k)) {
-          stringsMatch = false;
-        } else {
-          // checks first if the char from compareString and stringRemove have matched previously
-          if (stringsMatch == true) {
-            // stringsMatch continues to be true
-            stringsMatch = true;
+    // condition for asking to to remove an empty string
+    if (stringRemove.equals("")) {
+      builder.append(userInput);
+    } else {
+      // The goal of the loop is to compare strings and build new string while there is room in the string to compare
+      // Prereq: a String
+      // Loop invariant: The index 0 to i does not contain stringRemove.
+      while ((i < userInput.length()) && (userInput.length() >= (currentPosition + stringRemove.length()))) {
+        
+        // compare the two strings if they are the same or not
+        stringsMatch = true;
+        for (k = 0; k < stringRemove.length(); k = k+1) {
+          if (userInput.charAt(currentPosition + k) != stringRemove.charAt(k)) {
+            stringsMatch = false;
+          } else {
+            // checks first if the char from compareString and stringRemove have matched previously
+            if (stringsMatch == true) {
+              // stringsMatch continues to be true
+              stringsMatch = true;
+            }
           }
+        } // end for (k = 0; k < stringRemove)
+        
+        // If strings are the same, then move to next block with stringRemove length.
+        if (stringsMatch) {
+          currentPosition = currentPosition + stringRemove.length();
+        } else {
+          // adds the non-match char and updates position 
+          builder.append(userInput.charAt(currentPosition));
+          currentPosition = currentPosition + 1;
         }
-      }
-      // If strings are the same, then move to next block with stringRemove length.
-      if (stringsMatch) {
-        currentPosition = currentPosition + stringRemove.length();
-      } else {
-        // adds the non-match char and updates position 
-        builder.append(userInput.charAt(i));
-        currentPosition = currentPosition + 1;
-      }
+        
+        i = i+1;
+      } // end while (i<userInput.length)
       
-      i = i+1;
-    } 
-    // Postreq: removeString is not in the new string
-    
-    // if not enough length, take remaining string into new string
-    if (userInput.length() < (currentPosition + stringRemove.length())) {
+      // Postreq: removeString is not in the new string
       
-      // The goal of this loop is to append the remaining letters.
-      // Prereq: a userString that is smaller than stringRemove length
-      // Loop invariant: index 0 to currentPosition have been appended
-      while (currentPosition < userInput.length()) {
-        builder.append(userInput.charAt(currentPosition));
-        currentPosition = currentPosition + 1;
-      }
-      // Postreq: all necessary letters are appended
-    }
-    
+      // if not enough length, take remaining string into new string
+      if (userInput.length() < (currentPosition + stringRemove.length())) {
+        
+        // The goal of this loop is to append the remaining letters.
+        // Prereq: a userString smaller than stringRemove length
+        // Loop invariant: index 0 to currentPosition have been appended
+        while (currentPosition < userInput.length()) {
+          builder.append(userInput.charAt(currentPosition));
+          currentPosition = currentPosition + 1;
+        }
+        // Postreq: all necessary letters are appended
+        
+      } // end if(userInput.length < (currentPosition + stringRemove.length))
+      
+    } // end if (stringRemove == "")
+
     return builder.toString();
   }
   
