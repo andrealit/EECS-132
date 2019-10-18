@@ -1,6 +1,6 @@
 # EECS-132
-Case Western Reserve University
-Introduction to Programming in Java 
+Case Western Reserve University<br/>
+Introduction to Programming in Java<br/>
 Fall 2019
 
 ## Description
