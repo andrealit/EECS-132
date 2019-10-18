@@ -10,7 +10,6 @@ public class HW2 {
   // 1) This method takes a string and checks if in alphabetical order
   public static boolean isAlphabeticalOrder(String userInput) {
     
-    // using two indexes to check two letters at a time
     int frontLetter = 0;
     int backLetter = frontLetter+1;
     
@@ -32,14 +31,12 @@ public class HW2 {
         backLetter = backLetter + 1;
       }
     }
-    // Postreq: all letters are in alphabetical order.
     return true;
   }
   
   // 2) This method takes a string and removes the first n occurances of a character.
   public static String removeNchars(String userInput, int numberRemove, char userLetter) {
     
-    // using index to check letter
     int index = 0;
     int amountRemoved = 0;
     char charOne;
@@ -53,7 +50,6 @@ public class HW2 {
 
       charOne = userInput.charAt(index);
       
-      
       if (charOne != userLetter) {
         builder.append(userInput.charAt(index));
       } else {
@@ -66,22 +62,21 @@ public class HW2 {
       
       index = index + 1;
     }
-    // Postreq: all instances of character are removed
     return builder.toString();
   }
   
   // 3) This method takes two Strings and returns a String where every occurance of the second String is removed.
   public static String removeString(String userInput, String stringRemove) {
     
-    // index used for checking length and comparing char
     int i = 0; 
     int k = 0;
     
     // check matching stringRemove to compareString
     boolean stringsMatch = true;
+    // keeps track of currentPosition in String
+    int currentPosition = 0;
     
     StringBuilder builder = new StringBuilder(); 
-    int currentPosition = 0;
     
     // condition for asking to to remove an empty string
     if (stringRemove.equals("")) {
@@ -118,19 +113,14 @@ public class HW2 {
         i = i+1;
       } // end while (i<userInput.length)
       
-      // Postreq: removeString is not in the new string
-      
       // if not enough length, take remaining string into new string
       if (userInput.length() < (currentPosition + stringRemove.length())) {
         
         // The goal of this loop is to append the remaining letters.
-        // Prereq: a userString smaller than stringRemove length
-        // Loop invariant: index 0 to currentPosition have been appended
         while (currentPosition < userInput.length()) {
           builder.append(userInput.charAt(currentPosition));
           currentPosition = currentPosition + 1;
         }
-        // Postreq: all necessary letters are appended
         
       } // end if(userInput.length < (currentPosition + stringRemove.length))
       
@@ -141,10 +131,10 @@ public class HW2 {
   
   // 4) This method takes char and String then returns a String, where output is the same except char is shifted right
   public static String moveAllXsRight(char theChar, String userInput) {
-    
-    // indexes to keep track of place and number of occurances
+
     int i = 0;
     int j = 0;
+    // keep track of number of word occurances
     int countMatch = 0;
     
     StringBuilder builder = new StringBuilder();
@@ -197,7 +187,6 @@ public class HW2 {
       }
       i = i + 1;
     }
-    // Postreq: all theChar is shifted to the right
     return builder.toString();
   }
   
@@ -205,25 +194,23 @@ public class HW2 {
   public static void moveAllXsDown(char theChar, char[][] board) {
     int i = 0;
     int j = 0;
+    // keeps count of number of matches found
     int countMatch = 0;
     int m = 0;
     int p = 0;
+    // checks if a move down is needed
     boolean needMove = true;
-    
-    System.out.println("The Moving Char is: " + theChar);
-    System.out.println("The Original 2-Dimensional Board is: ");
-    for (int k = 0; k < board.length; k++) {
-      System.out.println(Arrays.toString(board[k]));
-    }
      
     // The goal of this loop is to traverse through each row of the board (except the last) and search for theChar
     // Prereq: any two dimensional array
     // Loop invariant: The 2-D array from index 0 to i has shifted char down.
     while (i < board.length - 1) {
       j = 0;
-      // looping through each column
+      
+      // A loop that traverses through each column
       while (j < board[i].length) {
         
+        // Finds the current place of theChar
         if (board[i][j] == theChar) {
           m = i;
           countMatch = 0;
@@ -243,10 +230,10 @@ public class HW2 {
           
           // if Move is needed, then move theChar down
           if (needMove) {
-            
             if ((countMatch > 0) && (board[i+countMatch].length > j)) {
               // get nonmatch into cell[i, j]
               board[i][j] = board[i+countMatch][j];
+              // The loop that fills board in correct place with theChar
               for (p = 1; p <= countMatch; p++) {
                 board[i+p][j] = theChar;
               }
@@ -256,48 +243,27 @@ public class HW2 {
         } // end if board[i][j] == theChar
         j = j + 1;
       } // end while (j < board[i].length)
-      // Postreq:
       
       i = i + 1;
     } // end while (i < board.length)
     
-    // Postreq: Each char has shifted down correctly in the 2D array.
-    
-    System.out.println("The Moving Char is: " + theChar);
-    System.out.println("The New 2-Dimensional Board is: ");
-    for (int q = 0; q < board.length; q++) {
-      System.out.println(Arrays.toString(board[q]));
-    }
     
   }
   
   // 6) This method takes a char and a two dimensional array, shifting the character "down" a row and "left" a column
-  public static void moveAllXsDownLeft(char theChar, char[][] board) {
+  public static void moveXDownLeft(char theChar, char[][] board) {
     int i = 0;
     int j = 0;
-    int numRows = board.length;
-    int numCols = 0;
     int p = 0;
     int q = 0;
     
-    for (int v = 0; v < numRows; v++) {
-      if (numCols < board[v].length) {
-        numCols = board[v].length;
-      }
-    }
-    System.out.println("The Moving Char is " + theChar);
-    System.out.println("The Board has " + numRows + " rows and " );
-    
-    // Algorithm: 
-    // 1. Skip scanning in 1st column (j == 0)
-    // 2. No scanning for cells in the last row (no move down possible)
-    // 3. Store value of index j for the cells that match and search for the cell to swap by scanning down south
-    // 4. if the row index is still in bound then swap
-    
     // A loop to traverse through the rows of the 2D array
+    // Prereq: any two dimensional array
+    // Loop invariant: The 2-D array from index 0 to i has shifted char down and left.
     while (i < board.length - 1) {
       j = 1;
-      // A loop to traverse through the columns of the 2D array at row i.
+      
+      // A loop to traverse through the columns at row i.
       while (j < board[i].length) {
         // checks if theChar is on the board
         if (board[i][j] == theChar) {
@@ -310,26 +276,24 @@ public class HW2 {
           while (p < board.length - 1) {
             // column is in range
             if ((q-1) < board[p+1].length) {
-              board[i][j] = board[p+1][q+1];
+              // switches the places
+              board[i][j] = board[p+1][q-1];
               board[p+1][q-1] = theChar;
               // set p to out of range to stop loop.
               p = board.length;
             } else {
               p = p + 1;
               q = q - 1;
-            } // end if ((q - 1) < board[p+1])
+            }
           } // end while (p < board.length - 1)
-        } // end if (board[i][j] == theChar)
+        } 
         j = j+1;
+        
       } // end while (j < board[i].length)
+      
       i = i+1;
     } // end while (i < board.length)
     
-    System.out.println();
-    System.out.println("The new 2D board is: ");
-    for (int t = 0; t < board.length; t = t+1) {
-      System.out.println(Arrays.toString(board[t]));
-    }
   }
   
 //  // 7) This method takes a char and a String, returns a String: shifting the character "down" at every /n and "right" 
