@@ -6,13 +6,14 @@ An introduction to modern programming language features, computer programming an
 
 ## Projects
 ### Project One: Insurance Policy
-Focus on: 
+Building program for an insurance company that focuses on processing, keeping track of policy information, process claims, and determines yearly premiums.
+- classes
 - getter/setter methods
 - constructors
 - override/overloading
 
 ### Project Two: Strings
-Focus on:
+A collection of methods that takes in user inputs of strings or arrays and manipulates them.
 - for and while loops
 - string builder
 - two-dimensional arrays
