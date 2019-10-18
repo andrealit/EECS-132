@@ -3,6 +3,7 @@
 
 import org.junit.*;
 import static org.junit.Assert.*;
+import java.util.Arrays;
 
 public class HW2Tester {
   
@@ -14,17 +15,14 @@ public class HW2Tester {
   @Test
   public void testIsAlphabeticalOrder() {
     
-    // Should return "true" for this
-    // String str = "ac!ffG1hz";
-    
-    // Should return "false" for this
-    // String str = "ac!nfG1h";
-    
+    assertTrue("Incorrectly claims \"ac!ffG1hz\" is not in alphabetical order", HW2.isAlphabeticalOrder("ac!ffG1hz"));
+    assertFalse("Incorrectly claims \"ac!nfG1h\" is in alphabetical order", HW2.isAlphabeticalOrder("ac!nfG1h"));
     
     // Test 0, test 1, test many
     
     // Test 0 (no letters)
     assertTrue("Incorrectly claims \"11\" is not in alphabetical order", HW2.isAlphabeticalOrder("11"));
+    assertTrue("Incorrectly claims \"\" is not in alphabetical order", HW2.isAlphabeticalOrder(""));
     // Test 1 (one letter)
     assertTrue("Incorrectly claims \"a\" is not in alphabetical order", HW2.isAlphabeticalOrder("a"));
     // Test many (many letters)
@@ -33,14 +31,14 @@ public class HW2Tester {
     
     // Test first, test middle, test last
     
+    // Test first (occurance of no order in beginning of string)
+    assertFalse("Incorrectly claims \"zac!ffG1hz\" is in alphabetical order", HW2.isAlphabeticalOrder("zac!ffG1hz"));
     
-    // assert statements
+    // Test middle (occurance of no order in middle)
+    assertFalse("Incorrectly claims \"ac!ZfG1hz\" is in alphabetical order", HW2.isAlphabeticalOrder("ac!ZfG1hz"));
     
-    assertTrue("Incorrectly claims \"ac!ffG1hz\" is not in alphabetical order", HW2.isAlphabeticalOrder("ac!ffG1hz"));
-    assertFalse("Incorrectly claims \"ac!nfG1h\" is in alphabetical order", HW2.isAlphabeticalOrder("ac!nfG1h"));
-    
-    
-    
+    // Test last (occurance of no order at end)
+    assertFalse("Incorrectly claims \"ac!ffG1hzA\" is in alphabetical order", HW2.isAlphabeticalOrder("ac!ffG1hzA"));
     
   }
   
@@ -56,28 +54,36 @@ public class HW2Tester {
   public void testRemoveNchars() {
     
     String str = "Hello there!";
-    String str1 = "Hllo thre!";
-    String str2 = "Hllo thr!";
-    String str3 = "Hello tere!";
-    
-    // Should return "Hllo thre!" for this
-    // HW2.removeNchars("Hello there!", 2, 'e')
-    
-    // Should return "Hllo thr!" for this
-    // HW2.removeNchars("Hello there!", 10, 'e')
-    
-    // Should return "Hello tere!" for this
-    // HW2.removeNchars("Hello there!", 1, 'h')
-    
-    assertEquals(str1, HW2.removeNchars(str, 2, 'e'));
-    assertEquals(str2, HW2.removeNchars(str, 10, 'e'));
-    assertEquals(str3, HW2.removeNchars(str, 1, 'h'));
-                 
+    String expectedStr1 = "Hllo thre!";
+    String expectedStr2 = "Hllo thr!";
+    String expectedStr3 = "Hello tere!";
+    String expectedStr4 = "ello there!";
+    String expectedStr5 = "Heo there!";
+    String expectedStr6 = "Hello there";
                  
     // Test 0, test 1, test many
     
+    // Test 0 (no char needs to be removed)
+    assertEquals(str, HW2.removeNchars(str, 2, 'j'));
+    
+    // Test 1 (one char must be removed)
+    assertEquals(expectedStr3, HW2.removeNchars(str, 1, 'h'));
+    
+    // Test many (many chars must be removed)
+    assertEquals(expectedStr1, HW2.removeNchars(str, 2, 'e'));
+    assertEquals(expectedStr2, HW2.removeNchars(str, 10, 'e'));
+    
+    
     // Test first, test middle, test last
     
+    // Test first (first char remove)
+    assertEquals(expectedStr4, HW2.removeNchars(str, 1, 'H'));
+    
+    // Test middle (middle char remove)
+    assertEquals(expectedStr5, HW2.removeNchars(str, 3, 'l'));
+    
+    // Test last (last char remove)
+    assertEquals(expectedStr6, HW2.removeNchars(str, 3, '!'));
   }
   
   
@@ -90,64 +96,106 @@ public class HW2Tester {
    */
   @Test
   public void testRemoveString() {
-    // Should return "elle"
-    // HW2.removeString("ellelle", "elle")
     
-    // Should return "elle"
-    // HW2.removeString("elellele", "elle")
-    
-    // Should return "ll"
-    // HW2.removeString("ellellelle", "elle")
-    
-    String str = "elle";
-    String str1 = "ell";
-    String str2 = "elle";
-    String str3 = "holl";
-    String emptyStr = "";
-    
-    // should not remove 'elle'
-    assertEquals(str1, HW2.removeString(str1, str));
-    
-    // should return empty string
-    assertEquals(emptyStr, HW2.removeString(str2, str));
-    
-    // should return 'holl'
-    assertEquals(str3, HW2.removeString(str3, str));
-    
-    
+    // Test first
     assertEquals("lle", HW2.removeString("ellelle", "elle"));
+    
+    // Test middle
     assertEquals("elle", HW2.removeString("elellele", "elle"));
+    
+    // Test last
+    assertEquals("elel", HW2.removeString("elelelle", "elle"));
+    
+    
+    // Test 0 (no word)
+    assertEquals("ellg", HW2.removeString("ellg", "elle"));
+    assertEquals("elelgele", HW2.removeString("elelgele", "elle"));
+    
+    // Test 1 (one instance of word)
+    assertEquals("", HW2.removeString("elle", "elle"));
+    
+    // Test many (two instances of word)
     assertEquals("ll", HW2.removeString("ellellelle", "elle"));
     
   }
-//  
-//  /**
-//   * Test the moveAllXsRight method.
-//   * (4) "moveAllXsRight" takes a char and a String as input and returns a String: The output string should be the same 
-//   * as the input string except that every occurrence of the input character should be shifted one character to the right. 
-//   * If it is impossible to shift a character to the right (it is at the end of the string), then it is not shifted. 
-//   */
-//  @Test
-//  public void testMoveAllXsRight() {
-//    // Should return "abcdXefXXXghiXjXXXX"
-//    // HW2.moveAllXsRight('X', "abcXdeXXXfghXiXXjXX") 
-//    
-//    assertEquals("abcXdeXXXfghXiXXjXX", HW2.moveAllXsRight('X', "abcXdeXXXfghXiXXjXX"), "Does not move 'X' correctly");
-//    
-//  }
-//  
-//  /**
-//   * Test the moveAllXsDown method.
-//   * (5) "moveAllXsDown" takes a char and a two dimensional array of char as input and returns nothing: The method 
-//   * should take every occurrence of the input character and shift it "down" to the next row of the array, and at the 
-//   * same column. If it is impossible to to shift the character down (it is at the "bottom" row or the row below 
-//   * does not have that column), then it is not shifted.
-//   */
-//  @Test
-//  public void testMoveAllXsDown() {
-//    // Should return 
-//    
-//  }
+  
+  /**
+   * Test the moveAllXsRight method.
+   * (4) "moveAllXsRight" takes a char and a String as input and returns a String: The output string should be the same 
+   * as the input string except that every occurrence of the input character should be shifted one character to the right. 
+   * If it is impossible to shift a character to the right (it is at the end of the string), then it is not shifted. 
+   */
+  @Test
+  public void testMoveAllXsRight() {
+    // Should return "abcdXefXXXghiXjXXXX"
+    // HW2.moveAllXsRight('X', "abcXdeXXXfghXiXXjXX") 
+    
+    // Test 1 (one char move right)
+    assertEquals("abXcd", HW2.moveAllXsRight('X', "aXbcd"));
+    assertEquals("abXcdefXg", HW2.moveAllXsRight('X', "aXbcdeXfg"));
+    
+    // Test 0 (no char move)
+    assertEquals("ab", HW2.moveAllXsRight('X', "ab"));
+    
+    // Test many (multiple chars move)
+    assertEquals("abcdXefXXXghiXjXXXX", HW2.moveAllXsRight('X', "abcXdeXXXfghXiXXjXX"));
+    
+    
+    // Test first (first index)
+    assertEquals("aXb", HW2.moveAllXsRight('X', "Xab"));
+    
+    // Test middle (middle of String)
+    assertEquals("abcdeXXfg", HW2.moveAllXsRight('X', "abcdXXefg"));
+    
+    // Test last (end of String)
+    assertEquals("aX", HW2.moveAllXsRight('X', "aX"));
+    
+  }
+  
+  /**
+   * Test the moveAllXsDown method.
+   * (5) "moveAllXsDown" takes a char and a two dimensional array of char as input and returns nothing: The method 
+   * should take every occurrence of the input character and shift it "down" to the next row of the array, and at the 
+   * same column. If it is impossible to to shift the character down (it is at the "bottom" row or the row below 
+   * does not have that column), then it is not shifted.
+   */
+  @Test
+  public void testMoveAllXsDown() {
+    // Should return 
+    char[][] test = {{'a','b','c','X'},{'d','X','e','f','X'},{'X','X','i'},{'X','j','k','l'}};
+    
+    char[][] expectedBoard = { { 'a', 'b', 'c', 'f' }, { 'd', 'j', 'e', 'X', 'X' }, { 'X', 'X', 'i' }, { 'X', 'X', 'k', 'l' } };
+
+//    HW2.moveAllXsDown('X', test);
+    
+    // Test
+//    char[] row0 = HW2.boardResult[0];
+//    char[] row1 = HW2.boardResult[1];
+//    char[] row2 = HW2.boardResult[2];
+//    char[] row3 = HW2.boardResult[3];
+    
+    char[] expectRow0 = { 'a', 'b', 'c', 'f' };
+    char[] expectRow1 = { 'd', 'j', 'e', 'X', 'X' };
+    char[] expectRow2 = { 'X', 'X', 'i' };
+    char[] expectRow3 = { 'X', 'X', 'k', 'l' };
+    
+//    assertArrayEquals(expectRow0, HW2.table[0]);
+//    assertArrayEquals(expectRow1, HW2.table[1]);
+//    assertArrayEquals(expectRow2, HW2.table[2]);
+//    assertArrayEquals(expectRow3, HW2.table[3]);
+    
+    //assertTrue(Arrays.deepEquals(expectedBoard, HW2.table));
+  }
+  
+  /**
+   * Test the moveXDownLeft method.
+   * (6) "moveXDownLeft" takes a char and a two dimensional array of char as input and returns nothing: The method 
+   * should find the first occurrence of the char in the array (searching from "top" to "bottom" and "left" to "right"), 
+   * and it should slide that character in the array down and to the left as far as it can go. 
+   * Any characters on that diagonal are slide up and to the right to fill.
+   */
+  
+  
   
   
 }
