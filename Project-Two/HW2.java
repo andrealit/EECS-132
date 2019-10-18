@@ -192,7 +192,6 @@ public class HW2 {
   }
   
   // 5) This method takes a char and a two dimensional array, shifting the character "down" a row and same column
-  
   public static void moveAllXsDown(char theChar, char[][] board) {
     int i = 0;
     int j = 0;
@@ -243,7 +242,8 @@ public class HW2 {
               }
             }
           }
-        }
+          
+        } // end if board[i][j] == theChar
         j = j + 1;
       } // end while (j < board[i].length)
       // Postreq:
@@ -291,7 +291,7 @@ public class HW2 {
       while (j < board[i].length) {
         // checks if theChar is on the board
         if (board[i][j] == theChar) {
-          // set p as row index to navigate
+          // save p as row index to navigate
           p = i; 
           // and q as column index
           q = j; 
@@ -301,27 +301,25 @@ public class HW2 {
             // column is in range
             if ((q-1) < board[p+1].length) {
               board[i][j] = board[p+1][q+1];
-              board[p+1][q+1] = theChar;
+              board[p+1][q-1] = theChar;
               // set p to out of range to stop loop.
               p = board.length;
             } else {
               p = p + 1;
               q = q - 1;
-            }
-          }
-          
-        }
+            } // end if ((q - 1) < board[p+1])
+          } // end while (p < board.length - 1)
+        } // end if (board[i][j] == theChar)
         j = j+1;
-      }
+      } // end while (j < board[i].length)
       i = i+1;
-    }
+    } // end while (i < board.length)
     
     System.out.println();
     System.out.println("The new 2D board is: ");
     for (int t = 0; t < board.length; t = t+1) {
       System.out.println(Arrays.toString(board[t]));
     }
-    
   }
   
 //  // 7) This method takes a char and a String, returns a String: shifting the character "down" at every /n and "right" 
