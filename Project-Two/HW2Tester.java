@@ -156,8 +156,6 @@ public class HW2Tester {
    */
   @Test
   public void testMoveAllXsRight() {
-    // Should return "abcdXefXXXghiXjXXXX"
-    // HW2.moveAllXsRight('X', "abcXdeXXXfghXiXXjXX") 
     
     /* Test 0, test 1, test many */
     
@@ -189,50 +187,5 @@ public class HW2Tester {
     
   }
   
-  /**
-   * Test the moveAllXsDown method.
-   * (5) "moveAllXsDown" takes a char and a two dimensional array of char as input and returns nothing: The method 
-   * should take every occurrence of the input character and shift it "down" to the next row of the array, and at the 
-   * same column. If it is impossible to to shift the character down (it is at the "bottom" row or the row below 
-   * does not have that column), then it is not shifted.
-   */
-  @Test
-  public void testMoveAllXsDown() {
-    // Should return 
-    char[][] test = {{'a','b','c','X'},{'d','X','e','f','X'},{'X','X','i'},{'X','j','k','l'}};
-    
-    char[][] expectedBoard = { { 'a', 'b', 'c', 'f' }, { 'd', 'j', 'e', 'X', 'X' }, { 'X', 'X', 'i' }, { 'X', 'X', 'k', 'l' } };
 
-//    HW2.moveAllXsDown('X', test);
-    
-    // Test
-//    char[] row0 = HW2.boardResult[0];
-//    char[] row1 = HW2.boardResult[1];
-//    char[] row2 = HW2.boardResult[2];
-//    char[] row3 = HW2.boardResult[3];
-    
-    char[] expectRow0 = { 'a', 'b', 'c', 'f' };
-    char[] expectRow1 = { 'd', 'j', 'e', 'X', 'X' };
-    char[] expectRow2 = { 'X', 'X', 'i' };
-    char[] expectRow3 = { 'X', 'X', 'k', 'l' };
-    
-//    assertArrayEquals(expectRow0, HW2.table[0]);
-//    assertArrayEquals(expectRow1, HW2.table[1]);
-//    assertArrayEquals(expectRow2, HW2.table[2]);
-//    assertArrayEquals(expectRow3, HW2.table[3]);
-    
-  }
-  
-  /**
-   * Test the moveXDownLeft method.
-   * (6) "moveXDownLeft" takes a char and a two dimensional array of char as input and returns nothing: The method 
-   * should find the first occurrence of the char in the array (searching from "top" to "bottom" and "left" to "right"), 
-   * and it should slide that character in the array down and to the left as far as it can go. 
-   * Any characters on that diagonal are slide up and to the right to fill.
-   */
-  
-  
-  
-  
-  
 }
