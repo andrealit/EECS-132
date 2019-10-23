@@ -23,17 +23,17 @@ public class Date {
   
   // A) returns current day
   public int getDay() {
-    return day;
+    return this.day;
   }
   
   // B) returns current month
   public int getMonth() {
-    return month;
+    return this.month;
   }
   
   // C) returns current year
   public int getYear() {
-    return year;
+    return this.year;
   }
   
   // D) returns 0 if dates are same, positive number(1) if this date is later than input, and negative number(-1) if date is earlier
@@ -103,4 +103,6 @@ public class Date {
     
     return printMonth + " " + this.getDay() + ", " + this.getYear();
   }
-
+  
+  
+}
