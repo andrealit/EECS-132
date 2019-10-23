@@ -8,13 +8,13 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   
   /* FIELDS */
   
-  // the boolean whether annual limit exists. initialized to false
+  // Stores whether the policy has an annual limit
   private boolean hasAnnualLimit = false;
-  // limit for yearly spending is double initialized to 0.0
+  // Stores the annual limit for the policy
   private double annualLimit = 0.0;
-  // boolean whether lifetime limit exists. initialized to false
+  // Stores whether the policy has a lifetime limit
   private boolean hasLifetimeLimit = false;
-  // limit for lifetime spending is double initialized to 0.0
+  // Stores the lifetime limit for the policy
   private double lifetimeLimit = 0.0;
   
   /* CONSTRUCTORS */
@@ -56,13 +56,13 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   
   // B) returns if policy has annual limit (true) or not (false)
   public boolean hasAnnualLimit() {
-    return hasAnnualLimit;
+    return this.hasAnnualLimit;
   }
   
   // C) returns the annual limit for the policy. If policy has no annual limit, method returns non-positive value
   public double getAnnualLimit() {
     if (hasAnnualLimit == true) {
-      return annualLimit;
+      return this.annualLimit;
     } else {
       return 0.0;
     }
@@ -78,13 +78,13 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
   
   // E) returns if policy has lifetime limit (true) or not (false)
   public boolean hasLifetimeLimit() {
-    return hasLifetimeLimit;
+    return this.hasLifetimeLimit;
   }
   
   // F) returns lifetime limit for the policy if there is one, else returns non-positive number
   public double getLifetimeLimit() {
     if (hasLifetimeLimit && lifetimeLimit > 0) {
-      return lifetimeLimit;
+      return this.lifetimeLimit;
     } else {
       return 0.0;
     }
@@ -158,10 +158,12 @@ public class LimitedInsurancePolicy extends InsurancePolicy {
       if (getLifetimeBenefit() - getLifetimeLimit() < 0) {
         return 0.0;
       } else {
-        return getLifetimeBenefit() - getLifetimeLimit();
+        return this.getLifetimeBenefit() - this.getLifetimeLimit();
       }
     } else {
       return expectedTenYearBenefit;
     }
     
   }
+  
+}
