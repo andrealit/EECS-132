@@ -6,46 +6,44 @@
 // An insurance policy that calculates the users needs
 public class InsurancePolicy {
   
-  /* FIELDS */
-  
-  // policyNumber is value initialized to empty string
+  // Stores customer's policy number
   private String policyNumber = "";
-  // copay is starting amount before policy, double initialized to 0.0
+  // Stores the copay for the policy
   private double copay = 0.0;
-  // deductible is double initialized to 0.0
+  // Stores the deductible for the policy
   private double deductible = 0.0;
-  // amountApplied is double initialized to 0.0
+  // Stores the amount applied to the deductible for the policy
   private double amountApplied = 0.0;
-  // actuarialValue is double initialized to 0.0
+  // Stores the actuarial value for the policy
   private double actuarialValue = 0.0;
-  // hasOutOfPocketLimit is boolean initialized to false
+  // Stores whether the policy has an out of pocket limit
   private boolean hasOutOfPocketLimit = false;
-  // outOfPocketLimit is double initialized to 0.0
+  // Stores the out of pocket limit for the policy
   private double outOfPocketLimit = 0.0;
-  // yearlyOutOfPocketCost is double initialized to 0.0
+  // Stores the yearly out of pocket cost
   private double yearlyOutOfPocketCost = 0.0;
   
-  // yearlyBenefit is double initialized to 0.0
+  // Stores the amount this policy has been paid so far this year
   private double yearlyBenefit = 0.0;
-  // lifetimeBenefit is double initialized to 0.0
+  // Stores the amount this policy has paid so far in total
   private double lifetimeBenefit = 0.0;
-  // premium is double initialized to 0.0
+  // Stores the premium for the policy
   private double premium = 0.0;
-  // profitMargin is double initialized to 0.0
+  // Stores the profit margin for the policy
   private double profitMargin = 0.0;
-  // expectedTenYearBenefit is double initialized to 0.0
+  // Stores the expected ten year benefit
   private double expectedTenYearBenefit = 0.0;
   
-  // hasSupplementalInsurance is boolean initialized to false
+  // Stores whether policy has supplemental insurance
   private boolean hasSupplementalInsurance = false;
-  // supplementalInsurance is InsurancePolicy with null
+  // Stores the supplemental insurance
   private InsurancePolicy supplementalInsurance = null;
-  // expirationDate is of type Date class with null
+  // Stores the expiration date of policy
   private Date expirationDate = null;
   
-  // benefit is double initialized to 0.0
+  // Stores the benefit paid so far in total
   private double benefit = 0.0;
-  // outOfPocketCost is double initialized to 0.0
+  // Stores the yearly out of pocket cost
   private double outOfPocketCost = 0.0;
 
   
@@ -78,11 +76,9 @@ public class InsurancePolicy {
   }
  
   
-  /* METHODS */
-  
   // A) returns policy number
   public String getPolicyNumber() {
-    return policyNumber;
+    return this.policyNumber;
   }
   
   // B) sets copay to user input
@@ -92,7 +88,7 @@ public class InsurancePolicy {
   
   // C) returns copay 
   public double getCopay() {
-    return copay;
+    return this.copay;
   }
   
   // D) sets yearly deductible for policy
@@ -102,12 +98,12 @@ public class InsurancePolicy {
   
   // E) returns deductible 
   public double getDeductible() {
-    return deductible;
+    return this.deductible;
   }
   
   // F) returns the amount, applied so far to this year, to the deductible
   public double getAmountAppliedToDeductible() {
-    return amountApplied;
+    return this.amountApplied;
   }
   
   // G) sets actuarial value (must be decimal percent)
@@ -117,7 +113,7 @@ public class InsurancePolicy {
   
   // H) returns actuarial value (the percent of claims the policy will cover)
   public double getActuarialValue() {
-    return actuarialValue;
+    return this.actuarialValue;
   }
   
   // I) checks to see if policy has pocket limit, and if so, sets it
@@ -130,13 +126,13 @@ public class InsurancePolicy {
   
   // J) returns true if policy has out-of-pocket limit, false if it doesn't
   public boolean hasOutOfPocketLimit() {
-    return hasOutOfPocketLimit;
+    return this.hasOutOfPocketLimit;
   }
   
   // K) returns out-of-pocket limit. If no pocket limit, method returns a non-positive value.
   public double getOutOfPocketLimit() {
     if (hasOutOfPocketLimit && outOfPocketLimit > 0) {
-      return outOfPocketLimit;
+      return this.outOfPocketLimit;
     } else {
       return 0.0;
     }
@@ -149,7 +145,7 @@ public class InsurancePolicy {
   
   // L) returns the amount this policy has paid so far this year
   public double getYearlyBenefit() {
-    return yearlyBenefit;
+    return this.yearlyBenefit;
   }
   
   // EXTRA) sets lifetimeBenefit
@@ -159,7 +155,7 @@ public class InsurancePolicy {
   
   // M) returns the amount the policy paid so far in total
   public double getLifetimeBenefit() {
-    return lifetimeBenefit;
+    return this.lifetimeBenefit;
   }
   
   // N) adds a supplemental policy (also an InsurancePolicy) to the existing policy, and indicates that the current policy has a supplemental one.
@@ -171,7 +167,7 @@ public class InsurancePolicy {
   // O) returns supplementalInsurance
   public InsurancePolicy getSupplementalInsurance() {
     if (hasSupplementalInsurance) {
-      return supplementalInsurance;
+      return this.supplementalInsurance;
     } else {
       return null;
     }
@@ -179,12 +175,12 @@ public class InsurancePolicy {
   
   // P) returns end date of policy
   public Date getExpirationDate() {
-    return expirationDate;
+    return this.expirationDate;
   }
   
   // Q) returns the premium (the amount the policy holder must pay to buy the policy)
   public double getPremium() {
-    return premium;
+    return this.premium;
   }
   
   // R) sets the profit margin, a percentage of what the company wants to earn
@@ -194,7 +190,7 @@ public class InsurancePolicy {
   
   // S) returns the profit margin for the policy
   public double getProfitMargin() {
-    return profitMargin;
+    return this.profitMargin;
   }
   
   // EXTRA) sets the benefit
@@ -204,7 +200,7 @@ public class InsurancePolicy {
   
   // EXTRA) gets the benefit
   public double getBenefit() {
-    return benefit;
+    return this.benefit;
   }
   
   // EXTRA) sets the out of pocket cost
@@ -214,7 +210,7 @@ public class InsurancePolicy {
   
   // EXTRA) gets the out of pocket cost
   public double getOutOfPocketCost() {
-    return outOfPocketCost;
+    return this.outOfPocketCost;
   }
   
   // T) returns the amount the policy expects to pay in 10 years
@@ -224,31 +220,31 @@ public class InsurancePolicy {
   
   // U) returns the expected amount paid out by the policy
   public double getExpectedTenYearBenefit() {
-    return expectedTenYearBenefit;
+    return this.expectedTenYearBenefit;
   }
   
   // V) returns the user claim minus copay
   public double applyCopay(double claim) {
-    if (claim < copay) {
-      return claim;
+    if (claim < this.getCopay()) {
+      return this.claim;
     } else {
-      return claim -= copay;
+      return this.claim -= copay;
     }
   }
   
   // W) calculates the amount user must pay before the insurance policy pays a claim
   public double applyDeductible(double claim) {
     // checks if the amount applied to the deductible is less than deductible
-    if (getAmountAppliedToDeductible() < getDeductible()) {
+    if (this.getAmountAppliedToDeductible() < this.getDeductible()) {
       // if difference results in negative
-      if (claim - (getDeductible() - getAmountAppliedToDeductible()) < 0) {
+      if (claim - (this.getDeductible() - this.getAmountAppliedToDeductible()) < 0) {
         amountApplied = claim;
         claim = 0;
       } else {
         // takes difference between claim and deductible for new claim. 
         // amountApplied is from amount applied to deductible plus the difference between it and deductible
-        claim = claim - (getDeductible() - getAmountAppliedToDeductible());
-        amountApplied = getAmountAppliedToDeductible() + (getDeductible() - getAmountAppliedToDeductible());
+        claim = claim - (this.getDeductible() - this.getAmountAppliedToDeductible());
+        amountApplied = getAmountAppliedToDeductible() + (this.getDeductible() - this.getAmountAppliedToDeductible());
       }
     }
     return claim;
@@ -256,7 +252,7 @@ public class InsurancePolicy {
   
   // X) returns claim multiplied by actuarial value percent
   public double applyActuarialValue(double claim) {
-    return claim * getActuarialValue();
+    return claim * this.getActuarialValue();
   }
   
   // Y) returns the call of processClaim if policy has supplemental insurance, else returns claim
@@ -320,10 +316,10 @@ public class InsurancePolicy {
   // AA) resets the amount applied to the deductible, the yearly benefit, and yearly out-of-pocket cost
   public void renewPolicy() {
     // expectedTenYearBenefit is adjusted adding yearly benefit to 90%
-    expectedTenYearBenefit = getYearlyBenefit() + (.9 * (expectedTenYearBenefit));
-    amountApplied = 0.0;
-    yearlyBenefit = 0.0;
-    yearlyOutOfPocketCost = 0.0;
+    this.expectedTenYearBenefit = getYearlyBenefit() + (.9 * (expectedTenYearBenefit));
+    this.amountApplied = 0.0;
+    this.setYearlyBenefit(0.0);
+    this.yearlyOutOfPocketCost = 0.0;
     expirationDate = new Date(expirationDate.getDay(), expirationDate.getMonth(), (expirationDate.getYear() + 1));
   }
   
@@ -337,9 +333,9 @@ public class InsurancePolicy {
   public double totalPremium() {
     if (hasSupplementalInsurance) {
       getSupplementalInsurance().premium();
-      return getPremium() + getSupplementalInsurance().totalPremium();
+      return this.getPremium() + this.getSupplementalInsurance().totalPremium();
     } else {
-      return getPremium();
+      return this.getPremium();
     }
   }
   
