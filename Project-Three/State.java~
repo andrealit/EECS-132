@@ -1,0 +1,23 @@
+import java.util.*;
+
+/*
+ * A class that represents, looks up, and updates values.
+ */
+public abstract class State {
+  public State() {
+    Hashtable<String, Integer> h = new Hashtable<String, Integer>();
+    
+  }
+  
+  public void update() {
+    
+  }
+  
+  public int lookup(String variableName) {
+    
+  }
+  
+  
+  
+  
+}
