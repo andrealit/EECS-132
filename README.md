@@ -27,4 +27,4 @@ A hierarchy design for the underlying coding structures for beginning programmin
 - abstract classes
 - interfaces
 
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Hierarchy for HW3](<img src="https://docs.google.com/drawings/d/e/2PACX-1vRK00OHq4ekkwhoeXacaftN9iWLJH7c7sgQlBOHAACRW-51e0KO61rK1rOsxtSb2bZ7ozc8bQoduY_M/pub?w=1366&amp;h=853">)
