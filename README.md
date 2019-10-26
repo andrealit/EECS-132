@@ -26,3 +26,5 @@ A hierarchy design for the underlying coding structures for beginning programmin
 - JUnit test class
 - abstract classes
 - interfaces
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
