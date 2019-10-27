@@ -6,6 +6,6 @@ public interface ExpressionInt extends Expression {
    * @param name used for variable ref
    * @return int based on operator
    */ 
-  public int value(State name);
+  public abstract int value(State name);
   
 }
