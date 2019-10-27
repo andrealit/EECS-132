@@ -10,8 +10,6 @@ public class ArithmeticOperation implements ExpressionInt {
   private ExpressionInt expression1 = null;
   // Stores expression on right
   private ExpressionInt expression2 = null;
-  // Stores value result
-  private int storedValue = 0;
   
   /*
    * Creates an new instance of ArithmeticOperation 
@@ -28,7 +26,6 @@ public class ArithmeticOperation implements ExpressionInt {
   /**
    * Takes in inputState and returns 
    * @param inputState the state of the input given
-   * @return storedValue the value given after applying operation
    */
   public int value(State inputState) {
     int e1Value = expression1.value(inputState);
@@ -36,23 +33,14 @@ public class ArithmeticOperation implements ExpressionInt {
     
     switch (operator) {
       
-      case Add: 
-        this.storedValue = e1Value + e2Value;
-        break;
-      case Sub: 
-        this.storedValue = e1Value - e2Value;
-        break;
-      case Mult: 
-        this.storedValue = e1Value * e2Value;
-        break;
-      case Div: 
-        this.storedValue = e1Value / e2Value;
-        break;
-      case Rem: 
-        this.storedValue = e1Value % e2Value;
-        break;
+      case Add : return e1Value + e2Value;
+      case Sub : return e1Value - e2Value;
+      case Mult : return e1Value * e2Value;
+      case Div : return e1Value / e2Value;
+      case Rem : return e1Value % e2Value;
+      default: break;
     }
-    return this.storedValue;
+    return 0;
   }
   
   /*
