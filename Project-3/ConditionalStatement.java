@@ -1,4 +1,4 @@
-
+// A class representing a conditional statement
 public class ConditionalStatement extends StatementType implements Statement {
   // boolean conditional for statement
   private ExpressionBoolean boolCond;
@@ -29,6 +29,19 @@ public class ConditionalStatement extends StatementType implements Statement {
     } else {
       eElse.execute(s);
     }
+  }
+  
+  /*
+   * A method returning conditional in String form
+   */ 
+  public String toString() {
+    StringBuilder sb = new StringBuilder("if (");
+    sb.append(boolCond.toString());
+    sb.append(")\n" +
+              eThen.toStringTabbed(1) +
+              "else\n" +
+              eElse.toStringTabbed(1));
+    return sb.toString();
   }
   
   
