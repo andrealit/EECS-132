@@ -3,7 +3,7 @@
  * A class used for extending to make sure all statement classes get proper toStringTabbed
  * @author <em>Andrea Tongsak</em>
  */
-public interface StatementType {
+public class StatementType {
   /*
    * Returns conditional in string form with tabs
    * @param tabCount amount of tabs used in front of conditional
@@ -23,9 +23,9 @@ public interface StatementType {
     tabs = bTab.toString();
     
     // appends the tabs and string together
-    for(int i = 0; i < this.toString(); i++) {
+    for(int i = 0; i < this.toString().length(); i++) {
       bOutput.append(this.toString().charAt(i));
-      if (this.toString().append.charAt(i) == '\n' && i != this.toString().length() - 1) {
+      if (this.toString().charAt(i) == '\n' && i != this.toString().length() - 1) {
         bOutput.append(tabs);
       }
     }
