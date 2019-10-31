@@ -1,5 +1,5 @@
-
 /*
+ * @author Andrea Tongsak
  * A class representing while loops
  */ 
 public class Loop extends StatementType implements Statement {
@@ -16,6 +16,34 @@ public class Loop extends StatementType implements Statement {
   public Loop (ExpressionBoolean boolCond, Statement loopBody) {
     this.boolCond = boolCond;
     this.loopBody = loopBody;
+  }
+  
+  /*
+   * @param boolCond sets condition in loop header
+   */
+  public void setCondition(ExpressionBoolean boolCond) {
+    this.boolCond = boolCond;
+  }
+  
+  /*
+   * @return boolCond 
+   */ 
+  public ExpressionBoolean getCondition() {
+    return this.boolCond;
+  }
+  
+  /*
+   * @param loopBody sets body in loop
+   */ 
+  public void setBody(Statement loopBody) {
+    this.loopBody = loopBody;
+  }
+  
+  /*
+   * @return loopBody
+   */ 
+  public Statement getBody() {
+    return this.loopBody;
   }
   
   /*
@@ -37,5 +65,7 @@ public class Loop extends StatementType implements Statement {
     b.append("while (" + boolCond.toString() + ")\n" + loopBody.toStringTabbed(1));
     return b.toString();
   }
+  
+  // setCondition and getCondition and setBody and getBody
   
 }
