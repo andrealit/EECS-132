@@ -1,5 +1,8 @@
 
-// A class representing return expressions in functions
+/*
+ * @author Andrea Tongsak
+ * A class representing return expressions in functions
+ */ 
 public class Return extends StatementType implements Statement {
   
   // Stores the expression
@@ -14,11 +17,25 @@ public class Return extends StatementType implements Statement {
   }
   
   /*
+   * @param expression sets the expression assigned
+   */ 
+  public void setExpression(ExpressionInt expression) {
+    this.expression = expression;
+  }
+  
+  /*
+   * @return ExpressionInt assigned
+   */ 
+  public ExpressionInt getExpression() {
+    return this.expression;
+  }
+
+  /*
    * This method updates the state to set the value of a variable return
    * @param s the state of the input as given by the user
    */
   public void execute (State s) {
-    s.update("return", expression.value(s));
+    s.update("return ", expression.value(s));
   }
   
   /*

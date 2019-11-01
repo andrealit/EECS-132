@@ -1,17 +1,18 @@
-
+/*
+ * @author Andrea Tongsak
+ * A class used to represent arithmetic operations 
+ */ 
 public class ArithmeticOperation implements ExpressionInt {
   
   // options for Arithmetic operations
   public enum Operator { Add, Sub, Mult, Div, Rem; }
   
   // Stores which operator for action
-  private Operator operator = null;
+  private Operator operator;
   // Stores expression on left
-  private ExpressionInt expression1 = null;
+  private ExpressionInt expression1;
   // Stores expression on right
-  private ExpressionInt expression2 = null;
-  // Stores value result
-  private int storedValue = 0;
+  private ExpressionInt expression2;
   
   /*
    * Creates an new instance of ArithmeticOperation 
@@ -25,34 +26,65 @@ public class ArithmeticOperation implements ExpressionInt {
     this.expression2 = expression2;
   }
   
+  /*
+   * @return Operator returns the operator
+   */ 
+  public Operator getOperator() {
+    return this.operator;
+  }
+  
+  /*
+   * @param Operator sets operator 
+   */ 
+  public void setOperator(Operator operator) {
+    this.operator = operator;
+  }
+  
+  /*
+   * @return ExpressionInt returns the left hand expression
+   */ 
+  public ExpressionInt getExpression1() {
+    return this.expression1;
+  }
+  
+  /*
+   * @param expression1 sets the left hand expression
+   */ 
+  public void setExpression1(ExpressionInt expression1) {
+    this.expression1 = expression1;
+  }
+  
+  /*
+   * @return ExpressionInt returns the left hand expression
+   */ 
+  public ExpressionInt getExpression2() {
+    return this.expression2;
+  }
+  
+  /*
+   * @param expression2 sets the left hand expression
+   */ 
+  public void setExpression2(ExpressionInt expression2) {
+    this.expression2 = expression2;
+  }
+  
   /**
-   * Takes in inputState and returns 
-   * @param inputState the state of the input given
-   * @return storedValue the value given after applying operation
+   * Takes in s and returns the value executed by operator
+   * @param s the state of the input given
    */
-  public int value(State inputState) {
-    int e1Value = expression1.value(inputState);
-    int e2Value = expression2.value(inputState);
+  public int value(State s) {
+    int e1Value = expression1.value(s);
+    int e2Value = expression2.value(s);
     
     switch (operator) {
-      
-      case Add: 
-        this.storedValue = e1Value + e2Value;
-        break;
-      case Sub: 
-        this.storedValue = e1Value - e2Value;
-        break;
-      case Mult: 
-        this.storedValue = e1Value * e2Value;
-        break;
-      case Div: 
-        this.storedValue = e1Value / e2Value;
-        break;
-      case Rem: 
-        this.storedValue = e1Value % e2Value;
-        break;
+      case Add : return e1Value + e2Value;
+      case Sub : return e1Value - e2Value;
+      case Mult : return e1Value * e2Value;
+      case Div : return e1Value / e2Value;
+      case Rem : return e1Value % e2Value;
+      default: break;
     }
-    return this.storedValue;
+    return 0;
   }
   
   /*

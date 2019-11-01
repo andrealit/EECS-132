@@ -1,4 +1,7 @@
-// A class representing a conditional statement
+/**
+ * A class used to represent conditional statements
+ * @author <em>Andrea Tongsak</em>
+ */
 public class ConditionalStatement extends StatementType implements Statement {
   // boolean conditional for statement
   private ExpressionBoolean boolCond;

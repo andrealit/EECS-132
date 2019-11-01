@@ -3,7 +3,7 @@
  * A class representing assignment operations
  * @author <em>Andrea Tongsak</em>
  */
-public class Assignment extends StatementType implements Statement {
+public class Assignment extends StatementType implements Statement, ExpressionInt {
   // Stores where expression is stored
   private Variable var; 
   // Stores what expresion is stored
@@ -11,9 +11,39 @@ public class Assignment extends StatementType implements Statement {
   
   /**
    * Constructor that creates an assignment instance
+   * @param var Variable for where the int will be assigned
+   * @param e expression to be assigned to expression
    */ 
   public Assignment(Variable var, ExpressionInt expression) {
     this.var = var;
+    this.expression = expression;
+  }
+  
+  /*
+   * @return Variable name of assigned int
+   */ 
+  public Variable getVar() {
+    return this.var;
+  }
+  
+  /*
+   * @param var sets variable
+   */ 
+  public void setVar(Variable var) {
+    this.var = var;
+  }
+  
+  /*
+   * @return ExpressionInt returns the expression assigned
+   */ 
+  public ExpressionInt getExpression() {
+    return this.expression;
+  }
+  
+  /*
+   * @param expression sets the expression assigned
+   */ 
+  public void setExpression(ExpressionInt expression) {
     this.expression = expression;
   }
   
@@ -24,7 +54,16 @@ public class Assignment extends StatementType implements Statement {
    */ 
   public void execute(State s) {
     s.update(var.toString(), expression.value(s));
-    
+  }
+  
+  /**
+   * This method takes in a state as an input and returns the int value of that expression
+   * @param s the state of the input as given by the user
+   * @return int the integer value of the expression given by the user
+   **/
+  public int value(State s) 
+  {
+    return this.expression;
   }
   
   /**
@@ -32,9 +71,11 @@ public class Assignment extends StatementType implements Statement {
    * @return String the string representation of state values
    */ 
   public String toString() {
-    return var.toString() + " := " + expression.toString() + ";\n"
+    return var.toString() + " := " + expression.toString() + ";\n";
     
   }
+  
+  
   
   
   

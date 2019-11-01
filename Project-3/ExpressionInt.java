@@ -1,11 +1,14 @@
-
+/**
+ * @author Andrea Tongsak
+ * This interface is for Expressions that produce ints
+ **/
 public interface ExpressionInt extends Expression {
 
   /*
    * Method stub for value needing to be implemented
-   * @param name used for variable ref
+   * @param s used for variable ref
    * @return int based on operator
    */ 
-  public abstract int value(State name);
+  int value(State s);
   
 }

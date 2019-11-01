@@ -4,20 +4,19 @@
  */
 public class CompoundStatement extends StatementType implements Statement {
   // Stores all Statements 
-  private Statement[] statementArray = null;
+  private Statement[] statementArray;
   
   /*
-   * The constructor of class to replace the default constructor with input array
-   * @param statementArray the array of statements inputted by user
+   * The constructor of class to replace the default constructor with input array.
+   * @param statementArray the varargs list of statements inputted by user
    */ 
-  public CompoundStatement(Statement statementArray) {
+  public CompoundStatement(Statement... statementArray) {
     this.statementArray = statementArray;
   }
   
   /*
    * Takes in a string and loops it at each iteration of the loop
    * @param s State inputted by user
-   * @return void
    */ 
   public void execute(State s) {
     for (int i = 0; i < statementArray.length; i++) {
@@ -34,7 +33,7 @@ public class CompoundStatement extends StatementType implements Statement {
     b.append("{\n");
     // for loop runs through length of array
     for (int i = 0; i < statementArray.length; i++) {
-      b.append(statementArray[i].toStringTabbed(1))
+      b.append(statementArray[i].toStringTabbed(1));
     }
     b.append("}\n");
     return b.toString();

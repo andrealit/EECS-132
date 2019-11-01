@@ -6,9 +6,9 @@
  */
 public class Variable implements ExpressionInt {
   /**
-   * Stores name of variable, private as required by class 
+   * Stores name of variable, protected so accessible by subclasses
    */
-  private String name;
+  protected String name;
   
   /**
    * The constructor for the class to replace default constructor.
@@ -40,7 +40,7 @@ public class Variable implements ExpressionInt {
    * @return String the returned string that represents the numeric value
    */ 
   public String toString() {
-    return getName();
+    return this.name;
   } 
   
   

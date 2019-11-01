@@ -4,7 +4,7 @@
  */ 
 public class FunctionCall implements ExpressionInt {
   // stores the functions used
-  private Function function = null;
+  private Function function;
   // stores all variable inputs
   private ExpressionInt[] variableInputs;
   // stores all variable params

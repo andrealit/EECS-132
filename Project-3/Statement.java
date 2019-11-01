@@ -7,7 +7,8 @@ public interface Statement extends Expression {
   
   /*
    * Method stub for value needing to be tabbed
-   * 
+   * @param tabCount number of tabs
+   * @return String properly tabbed
    */ 
   String toStringTabbed(int tabCount);
   
