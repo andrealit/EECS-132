@@ -6,7 +6,7 @@
 public class Return extends StatementType implements Statement {
   
   // Stores the expression
-  private ExpressionInt expression = null;
+  private ExpressionInt expression;
   
   /*
    * A constructor that takes in an expression and replaces the default constructor

@@ -30,6 +30,4 @@ public class Number extends Variable implements ExpressionInt {
     return this.number;
   }
   
-  
-  
 }

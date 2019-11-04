@@ -12,7 +12,7 @@ public class Assignment extends StatementType implements Statement, ExpressionIn
   /**
    * Constructor that creates an assignment instance
    * @param var Variable for where the int will be assigned
-   * @param e expression to be assigned to expression
+   * @param expression ExpressionInt to be assigned to expression
    */ 
   public Assignment(Variable var, ExpressionInt expression) {
     this.var = var;
@@ -50,7 +50,6 @@ public class Assignment extends StatementType implements Statement, ExpressionIn
   /**
    * Updates the Assignment by updating variable with the value of expression
    * @param s the State used for variable updating
-   * @return void
    */ 
   public void execute(State s) {
     s.update(var.toString(), expression.value(s));
@@ -63,7 +62,7 @@ public class Assignment extends StatementType implements Statement, ExpressionIn
    **/
   public int value(State s) 
   {
-    return this.expression;
+    return expression.value(s);
   }
   
   /**

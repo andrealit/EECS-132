@@ -232,14 +232,9 @@ public class HW3Tester {
   public void testFunction() {
     Variable x = new Variable("x");
     Variable n = new Variable("n");
-    Function f = new Function("sum", 
-                              new CompoundStatement(new Assignment(x, new Number(0)), 
-                                                    new Loop(new Comparison(Comparison.Operator.GT, n, new Number(0)), 
-                                                             new CompoundStatement(new Assignment(x, new ArithmeticOperation(ArithmeticOperation.Operator.Add, x, n)), 
-                                                                                   new Assignment(n, new ArithmeticOperation(ArithmeticOperation.Operator.Sub, n, new Number(1))))), 
-                                                    new Return(x)), n);
+    Function f = new Function("sum", new CompoundStatement(new Assignment(x, new Number(0)), new Loop(new Comparison(Comparison.Operator.GT, n, new Number(0)), new CompoundStatement(new Assignment(x, new ArithmeticOperation(ArithmeticOperation.Operator.Add, x, n)), new Assignment(n, new ArithmeticOperation(ArithmeticOperation.Operator.Sub, n, new Number(1))))), new Return(x)), n);
     
-    assertEquals("{\n\t\tx := 0;\n\t\twhile (n > 0)\n", f.toString());
+    assertEquals("function sum(n)\n{\n\tx := 0;\n\twhile (n > 0)\n\t\t{\n\t\t\tx := x + n;\n\t\t\tn := n - 1;\n\t\t}\n\treturn x;\n}\n", f.toString());
     
   }
   

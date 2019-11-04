@@ -14,7 +14,7 @@ public class StatementType {
     // Builder for tabs
     StringBuilder bTab = new StringBuilder();
     // Builder for output
-    StringBuilder bOutput = new StringBuilder();
+    StringBuilder bOutput = new StringBuilder("\t");
     
     // creates a string for the tabs
     for (int i = 0; i < tabCount; i++) {
@@ -29,7 +29,7 @@ public class StatementType {
         bOutput.append(tabs);
       }
     }
-    
     return bOutput.toString();
+    
   }
 }

@@ -16,7 +16,7 @@ public class Function implements Expression {
    * @param functionBody what the function 
    * @param variableArray list of all parameters
    */
-  public Function(String name, Statement functionBody, Variable[] variableArray) {
+  public Function(String name, Statement functionBody, Variable... variableArray) {
     this.name = name;
     this.functionBody = functionBody; 
     this.variableArray = variableArray;
@@ -44,6 +44,7 @@ public class Function implements Expression {
       if(i != variableArray.length - 1)
         sb.append(", ");
     }
+    sb.append(variableArray[variableArray.length - 1].toString());
     sb.append(")\n");
     sb.append(functionBody.toString());
     return sb.toString();

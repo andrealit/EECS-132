@@ -20,7 +20,7 @@ public class Variable implements ExpressionInt {
   
   /*
    * This method takes a variable name and returns the int value
-   * @param name the name of variable
+   * @param state where variable stored 
    * @return int the int value associated with variable
    */ 
   public int value(State state) {
