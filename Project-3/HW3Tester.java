@@ -6,7 +6,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
-/* 
+/* *
  * A testing class for HW2 Methods 1-4
  * A conditional statement will need tests that go through each branch of the execution. 
  * Any loops will need tests that cover "test 0, test 1, test many" and "test first, test middle, test last"
@@ -25,7 +25,7 @@ public class HW3Tester {
 
   }
   
-  /*
+  /**
    * Test the Variable class
    */ 
   @Test 
@@ -44,7 +44,7 @@ public class HW3Tester {
     assertEquals("y", y.toString());
   }
   
-  /*
+  /**
    * Test the Number class
    */
   @Test
@@ -57,7 +57,7 @@ public class HW3Tester {
     assertEquals("18", n.toString());
   }
   
-  /*
+  /**
    * Test the ArithmeticOperation class
    */ 
   @Test 
@@ -84,7 +84,7 @@ public class HW3Tester {
     assertEquals("10 % 3", testRem.toString());
   }
   
-  /*
+  /**
    * Test the Comparison class
    */ 
   @Test
@@ -116,7 +116,7 @@ public class HW3Tester {
     
   }
   
-  /*
+  /**
    * Test the BooleanOperation class
    */
   @Test 
@@ -156,7 +156,7 @@ public class HW3Tester {
     assertEquals("\tv := v + 1;\n", increment.toStringTabbed(1));
   }
   
-  /*
+  /**
    * Test the Return class
    */ 
   @Test
@@ -169,7 +169,7 @@ public class HW3Tester {
     assertEquals("\treturn 5 + 10;\n", testReturn.toStringTabbed(1));
   }
   
-  /*
+  /**
    * Test the ConditionalStatement class
    */ 
   @Test
@@ -187,7 +187,7 @@ public class HW3Tester {
     assertEquals("\tif (5 < 10)\n\t\t\tv := v + 1;\n\t\telse\n\t\t\tv := v * 5;\n", testCondS.toStringTabbed(2));
   }
   
-  /*
+  /**
    * Test the Loop class
    */ 
   @Test 
@@ -207,7 +207,7 @@ public class HW3Tester {
     assertEquals("\twhile (x <= 10)\n\t\t\t{\n\t\t\t\tresult := result + x;\n\t\t\t\tx := x + 1;\n\t\t\t}\n", loop.toStringTabbed(2));
   }
   
-  /*
+  /**
    * Test the Compound Statement class
    */ 
   @Test
@@ -225,7 +225,7 @@ public class HW3Tester {
     assertEquals("\t{\n\t\t\treturn 5 + 10;\n\t\t\treturn 5 + 10;\n\t\t\treturn 5 + 10;\n\t\t}\n", testCompS.toStringTabbed(2));
   }
   
-  /*
+  /**
    * Test the Function class
    */
   @Test 
@@ -238,18 +238,14 @@ public class HW3Tester {
     
   }
   
-  /*
-   * Test the Function class
+  /**
+   * Test the FunctionCall class
    */
   @Test
   public void testFunctionCall() {
-    
+    //FunctionCall f = new FunctionCall();
+    // f.value
   }
-  
-  
-  
-  
-  
-  
+
   
 }

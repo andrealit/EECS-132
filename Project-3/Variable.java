@@ -1,8 +1,6 @@
 /**
- * @author Andrea Tongsak
- * value takes a state as input and returns the int value of that number
- * getName returns the name of variable
- * toString returns the string representation of the numeric value of the number
+ * A representation of variables
+ * @author <em>Andrea Tongsak</em>
  */
 public class Variable implements ExpressionInt {
   /**
@@ -19,7 +17,7 @@ public class Variable implements ExpressionInt {
   }
   
   /*
-   * This method takes a variable name and returns the int value
+   * This method takes a state and returns the int value
    * @param state where variable stored 
    * @return int the int value associated with variable
    */ 

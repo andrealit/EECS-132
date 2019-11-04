@@ -3,18 +3,18 @@
  * @author <em>Andrea Tongsak</em>
  */
 public class ConditionalStatement extends StatementType implements Statement {
-  // boolean conditional for statement
+  /** stores boolean conditional for statement */
   private ExpressionBoolean boolCond;
-  // statement for then
+  /** stores statement for then */
   private Statement eThen;
-  // statement for else
+  /** stores statement for else */
   private Statement eElse;
   
-  /*
+  /**
    * Constructs a conditional statement
    * @param boolCond boolean condition to decide which statement to run
    * @param eThen statement ran if boolCond is true
-   * @param eElse statemen ran if boolCond is false
+   * @param eElse statement ran if boolCond is false
    */ 
   public ConditionalStatement(ExpressionBoolean boolCond, Statement eThen, Statement eElse) {
     this.boolCond = boolCond;
@@ -22,7 +22,49 @@ public class ConditionalStatement extends StatementType implements Statement {
     this.eElse = eElse;
   }
   
-  /*
+  /**
+   * @return ExpressionBoolean returns the boolCond
+   */ 
+  public ExpressionBoolean getCondition() {
+    return this.boolCond;
+  }
+  
+  /**
+   * @param boolCond sets the boolCond
+   */ 
+  public void setCondition(ExpressionBoolean boolCond) {
+    this.boolCond = boolCond;
+  }
+  
+  /**
+   * @return Statement returns the then statement 
+   */ 
+  public Statement getThen() {
+    return this.eThen;
+  }
+  
+  /**
+   * @param eThen sets the Then statement
+   */ 
+  public void setThen(Statement eThen) {
+    this.eThen = eThen;
+  }
+  
+  /**
+   * @return Statement returns the else statement
+   */ 
+  public Statement getElse() {
+    return this.eElse;
+  }
+  
+  /**
+   * @param eElse sets the else statement
+   */ 
+  public void setElse(Statement eElse) {
+    this.eElse = eElse;
+  }
+  
+  /**
    * A method executing eThen if boolCond is true and eElse if false
    * @param s State used to reference variables when needed
    */ 
@@ -34,8 +76,9 @@ public class ConditionalStatement extends StatementType implements Statement {
     }
   }
   
-  /*
+  /**
    * A method returning conditional in String form
+   * @return String the string version of the statement
    */ 
   public String toString() {
     StringBuilder sb = new StringBuilder("if (");

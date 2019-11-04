@@ -1,16 +1,16 @@
-/*
+/**
  * Represent function definition in language class
  * @author Andrea Tongsak
  */ 
 public class Function implements Expression {
-  // stores name of function
+  /** stores name of function */
   private String name;
-  // stores body of function
+  /** stores body of function */
   private Statement functionBody;
-  // stores all param of function
-  private Variable[] variableArray = {};
+  /** stores all param of function */
+  private Variable[] variableArray;
   
-  /*
+  /**
    * Constructs a function based on inputs
    * @param name what the function is named
    * @param functionBody what the function 
@@ -22,7 +22,7 @@ public class Function implements Expression {
     this.variableArray = variableArray;
   }
   
-  /*
+  /**
    * Constructor for 0 variables
    * @param name what the function is named
    * @param functionBody what the function does
@@ -32,7 +32,23 @@ public class Function implements Expression {
     this.functionBody = functionBody;
   }
   
-  /*
+  /**
+   * Sets the name of function
+   * @return name
+   */ 
+  public void setName(String name) {
+    this.name = name;
+  }
+  
+  /**
+   * Sets body of function
+   * @return Statement of function
+   */ 
+  public void setFunctionBody(Statement functionBody) {
+    this.functionBody = functionBody;
+  }
+  
+  /**
    * @return function in String form
    */ 
   public String toString() {
@@ -50,18 +66,19 @@ public class Function implements Expression {
     return sb.toString();
   }
   
-  /*
-   * Retrieves name of function
+  /**
+   * Retrieves the name of the function
    * @return name of function
    */ 
   public String getName() {
     return this.name;
   }
   
-  /*
-   * Retrieves body of function
+  
+  /**
+   * Retrieves the body of the function 
    * @return Statement of function
-   */ 
+   */
   public Statement getFunctionBody() {
     return this.functionBody;
   }
@@ -73,5 +90,15 @@ public class Function implements Expression {
   public Variable[] getVariables() {
     return this.variableArray;
   }
+  
+  /*
+   * Sets the variable array
+   * @param variable array of the function
+   */
+  public void setVariables(Variable... variableArray) {
+    this.variableArray = variableArray;
+  }
+  
+  
   
 }

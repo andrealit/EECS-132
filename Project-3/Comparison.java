@@ -1,20 +1,20 @@
-/*
- * @author Andrea Tongsak
+/**
  * A class used to compare two expressions
+ * @author <em>Andrea Tongsak</em>
  */ 
 public class Comparison implements ExpressionBoolean {
   
   // Options for Conditional operations
   public enum Operator { LT, LTE, GT, GTE, EQ, NEQ; }
   
-  // Stores operator used 
+  /** Stores operator used */
   private Operator operator;
-  // Stores expression on left
+  /** Stores expression on left */
   private ExpressionInt expression1;
-  // Stores expression on right
+  /** Stores expression on right */
   private ExpressionInt expression2;
   
-  /*
+  /**
    * Constructs a Comparison operation with 2 expressions and an operator
    * @param operator Operator used on 2 expressions
    * @param expression1 Expression that operator will be used on with expression2
@@ -26,49 +26,49 @@ public class Comparison implements ExpressionBoolean {
     this.expression2 = expression2;
   }
   
-  /*
+  /**
    * @return Operator returns the operator
    */ 
   public Operator getOperator() {
     return this.operator;
   }
   
-  /*
+  /**
    * @param Operator sets operator 
    */ 
   public void setOperator(Operator operator) {
     this.operator = operator;
   }
   
-  /*
+  /**
    * @return ExpressionInt returns the left hand expression
    */ 
   public ExpressionInt getExpression1() {
     return this.expression1;
   }
   
-  /*
+  /**
    * @param expression1 sets the left hand expression
    */ 
   public void setExpression1(ExpressionInt expression1) {
     this.expression1 = expression1;
   }
   
-  /*
+  /**
    * @return ExpressionInt returns the left hand expression
    */ 
   public ExpressionInt getExpression2() {
     return this.expression2;
   }
   
-  /*
+  /**
    * @param expression2 sets the left hand expression
    */ 
   public void setExpression2(ExpressionInt expression2) {
     this.expression2 = expression2;
   }
   
-  /*
+  /**
    * Used to return result of Operator on 2 expressions
    * @param s State for referencing variables
    */ 
@@ -88,7 +88,7 @@ public class Comparison implements ExpressionBoolean {
     return false;
   }
   
-  /*
+  /**
    * Used to return String of expression1 + Operator + expression2
    * @return String representation of Comparison
    */ 
@@ -97,7 +97,7 @@ public class Comparison implements ExpressionBoolean {
     return expression1.toString() + " " + operatorString + " " + expression2.toString(); 
   }
   
-  /*
+  /**
    * Convert proper Operator to String for toString method
    */
   public String operatorToString() {

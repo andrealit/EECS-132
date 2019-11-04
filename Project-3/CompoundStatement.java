@@ -3,7 +3,7 @@
  * @author <em>Andrea Tongsak</em>
  */
 public class CompoundStatement extends StatementType implements Statement {
-  // Stores all Statements 
+  /** Stores all Statements */
   private Statement[] statementArray;
   
   /*

@@ -1,8 +1,11 @@
-/*
- * @author Andrea Tongsak
+/**
+ * A class representing Boolean Operations
+ * @author <em>Andrea Tongsak</em>
  */ 
 class BooleanOperation {
-  // options for Boolean operations
+  /**
+   * options for Boolean operations
+   */
   public enum Operator { And, Or; }
   
   // Stores which operator for action

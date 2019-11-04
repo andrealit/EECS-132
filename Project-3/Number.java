@@ -1,8 +1,6 @@
 /**
- * @author Andrea Tongsak
  * This class represents whole numbers
- * value takes a state as input and returns the int value of the number
- * toString returns a string representation of the numeric value of the number
+ * @author Andrea Tongsak
  **/
 public class Number extends Variable implements ExpressionInt {
   /*

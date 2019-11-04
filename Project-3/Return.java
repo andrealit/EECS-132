@@ -1,7 +1,7 @@
 
-/*
- * @author Andrea Tongsak
+/**
  * A class representing return expressions in functions
+ * @author <em>Andrea Tongsak</em>
  */ 
 public class Return extends StatementType implements Statement {
   
@@ -17,14 +17,16 @@ public class Return extends StatementType implements Statement {
   }
   
   /*
-   * @param expression sets the expression assigned
+   * Sets the expression assigned
+   * @param expression 
    */ 
   public void setExpression(ExpressionInt expression) {
     this.expression = expression;
   }
   
   /*
-   * @return ExpressionInt assigned
+   * returns assigned int
+   * @return ExpressionInt 
    */ 
   public ExpressionInt getExpression() {
     return this.expression;
@@ -35,7 +37,7 @@ public class Return extends StatementType implements Statement {
    * @param s the state of the input as given by the user
    */
   public void execute (State s) {
-    s.update("return ", expression.value(s));
+    s.update("return", expression.value(s));
   }
   
   /*

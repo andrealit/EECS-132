@@ -1,10 +1,12 @@
-/*
- * @author Andrea Tongsak
+/**
  * A class used to represent arithmetic operations 
+ * @author <em>Andrea Tongsak</em>
  */ 
 public class ArithmeticOperation implements ExpressionInt {
   
-  // options for Arithmetic operations
+  /**
+   * options for Arithmetic operations
+   */ 
   public enum Operator { Add, Sub, Mult, Div, Rem; }
   
   // Stores which operator for action
