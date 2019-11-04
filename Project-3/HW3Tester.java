@@ -239,17 +239,13 @@ public class HW3Tester {
   }
   
   /*
-   * Test the Function class
+   * Test the FunctionCall class
    */
   @Test
   public void testFunctionCall() {
-    
+    //FunctionCall f = new FunctionCall();
+    // f.value
   }
-  
-  
-  
-  
-  
-  
+
   
 }
