@@ -223,16 +223,26 @@ public class HW3Tester {
   @Test
   public void testConditionalStatement() {
     Variable v = new Variable("v");
-    ConditionalStatement testCondS = new ConditionalStatement(new Comparison(Comparison.Operator.LT, new Number(5), new Number(10)), 
+    ConditionalStatement testCondS = new ConditionalStatement(new Comparison(Comparison.Operator.LT, v, new Number(10)), 
                                                            new Assignment(v, new ArithmeticOperation(ArithmeticOperation.Operator.Add, 
                                                                                                      v, new Number(1))),
                                                            new Assignment(v, new ArithmeticOperation(ArithmeticOperation.Operator.Mult, 
                                                                                                      v, new Number(5))));
-    State s = new State();
-    testCondS.execute(s);
     
-    assertEquals("if (5 < 10)\n\tv := v + 1;\nelse\n\tv := v * 5;\n", testCondS.toString());
-    assertEquals("\tif (5 < 10)\n\t\t\tv := v + 1;\n\t\telse\n\t\t\tv := v * 5;\n", testCondS.toStringTabbed(2));
+    
+    assertEquals("if (v < 10)\n\tv := v + 1;\nelse\n\tv := v * 5;\n", testCondS.toString());
+    assertEquals("\tif (v < 10)\n\t\t\tv := v + 1;\n\t\telse\n\t\t\tv := v * 5;\n", testCondS.toStringTabbed(2));
+    
+    State s = new State();
+    s.update("v", 5);
+    assertEquals(5, s.lookup(v.getName()));
+    testCondS.execute(s);
+    assertEquals(6, s.lookup(v.getName()));
+    
+    s.update("v", 11);
+    assertEquals(11, s.lookup(v.getName()));
+    testCondS.execute(s);
+    assertEquals(55, s.lookup(v.getName()));
     
     Assignment testThen = new Assignment(v, new ArithmeticOperation(ArithmeticOperation.Operator.Div, v, new Number(10)));
     testCondS.setThen(testThen);
@@ -241,6 +251,8 @@ public class HW3Tester {
     Assignment testElse = new Assignment(v, new ArithmeticOperation(ArithmeticOperation.Operator.Rem, v, new Number(9))); 
     testCondS.setElse(testElse);
     assertEquals(testElse, testCondS.getElse());
+
+    
   }
   
   /**
@@ -256,11 +268,16 @@ public class HW3Tester {
     
     Loop loop = new Loop(new Comparison(Comparison.Operator.LTE, x, new Number(10)), new CompoundStatement(sumUpdate, increment));
     
-    State s = new State();
-    loop.execute(s);
-    
     assertEquals("while (x <= 10)\n\t{\n\t\tresult := result + x;\n\t\tx := x + 1;\n\t}\n", loop.toString());
     assertEquals("\twhile (x <= 10)\n\t\t\t{\n\t\t\t\tresult := result + x;\n\t\t\t\tx := x + 1;\n\t\t\t}\n", loop.toStringTabbed(2));
+    
+    State s = new State();
+    s.update("x", 9);
+    assertEquals(9, s.lookup(x.getName()));
+    loop.execute(s);
+    assertEquals(11, s.lookup(x.getName()));
+    loop.execute(s);
+    assertEquals(11, s.lookup(x.getName()));
     
     Comparison testCond = new Comparison(Comparison.Operator.LTE, x, new Number(1));
     loop.setCondition(testCond);
@@ -291,7 +308,7 @@ public class HW3Tester {
     int[] a = new int[] {11, 12, 13};
     Statement[] testArray = new Statement[] {test1, test2};
     testCompS.setStatementArray(testArray);
-    assertEquals(testArray, testCompS.getStatementArray());
+    assertArrayEquals(testArray, testCompS.getStatementArray());
   }
   
   /**

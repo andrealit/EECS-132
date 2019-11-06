@@ -19,6 +19,9 @@ public class CompoundStatement extends StatementType implements Statement {
    * @param s State inputted by user
    */ 
   public void execute(State s) {
+    /**
+     * For loop executes each statement in state
+     */ 
     for (int i = 0; i < statementArray.length; i++) {
       statementArray[i].execute(s);
     }
