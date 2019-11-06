@@ -54,13 +54,17 @@ public class Function implements Expression {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("function " + name + "(");
-    // for loop to run through and append the sections needed for the variable
-    for (int i = 0; i < variableArray.length - 1; i++) {
-      sb.append(variableArray[i].toString());
-      if(i != variableArray.length - 1)
-        sb.append(", ");
+    /** 
+      * Run through and append the sections needed for the variable
+      */ 
+    if (this.getVariables() != null) {
+      for (int i = 0; i < variableArray.length; i++) {
+        sb.append(variableArray[i].toString());
+        if(i != variableArray.length - 1)
+          sb.append(", ");
+      }
     }
-    sb.append(variableArray[variableArray.length - 1].toString());
+    
     sb.append(")\n");
     sb.append(functionBody.toString());
     return sb.toString();
@@ -73,7 +77,6 @@ public class Function implements Expression {
   public String getName() {
     return this.name;
   }
-  
   
   /**
    * Retrieves the body of the function 

@@ -27,10 +27,18 @@ public class Variable implements ExpressionInt {
   
   /*
    * This method returns the name of the variable
-   * @return String 
+   * @return String name
    */ 
   public String getName() {
     return this.name;
+  }
+  
+  /**
+   * Set name of variable
+   * @param String
+   */ 
+  public void setName(String name) {
+    this.name = name;
   }
   
   /*

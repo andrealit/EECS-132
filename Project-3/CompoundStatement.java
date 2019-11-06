@@ -31,11 +31,29 @@ public class CompoundStatement extends StatementType implements Statement {
   public String toString() {
     StringBuilder b = new StringBuilder();
     b.append("{\n");
-    // for loop runs through length of array
+    /**
+     * for loop runs through length of array
+     */ 
     for (int i = 0; i < statementArray.length; i++) {
       b.append(statementArray[i].toStringTabbed(1));
     }
     b.append("}\n");
     return b.toString();
+  }
+  
+  /*
+   * Retrieves the statements of the function
+   * @return statement array of the function
+   */ 
+  public Statement[] getStatementArray() {
+    return this.statementArray;
+  }
+  
+  /*
+   * Sets the statement array
+   * @param variable array of the function
+   */
+  public void setStatementArray(Statement... statementArray) {
+    this.statementArray = statementArray;
   }
 }

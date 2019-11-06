@@ -28,4 +28,21 @@ public class Number extends Variable implements ExpressionInt {
     return this.number;
   }
   
+  /**
+   * Gets the number
+   * @return int number stored 
+   */
+  public int getNumber() {
+    return this.number;
+  }
+  
+  /**
+   * Sets the number
+   * @param int number stored 
+   */
+  public void setNumber(int number) {
+    this.number = number;
+  }
+  
+  
 }

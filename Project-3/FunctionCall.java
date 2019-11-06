@@ -13,6 +13,7 @@ public class FunctionCall implements ExpressionInt {
   private Statement functionBody;
   /** stores state */
   private State state;
+  /** */
   
   /**
    * Constructs function call
@@ -43,8 +44,13 @@ public class FunctionCall implements ExpressionInt {
    */ 
   public int value(State s) {
     state = new State();
-    for (int i = 0; i < variableArray.length; i++) {
-      state.update(variableArray[i].toString(), variableInputs[i].value(s));
+    /**
+     * Copies through variables in state
+     */
+    if (variableArray != null) {
+      for (int i = 0; i < variableArray.length; i++) {
+        state.update(variableArray[i].toString(), variableInputs[i].value(s));
+      }
     }
     
     functionBody.execute(state);
@@ -58,13 +64,55 @@ public class FunctionCall implements ExpressionInt {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(function.getName() + "(");
-    for (int i = 0; i < variableArray.length; i++) {
-      sb.append(variableInputs[i].toString());
-      if(i != variableArray.length - 1)
-        sb.append(", ");
+    /**
+     * Runs through the length of the input expression 
+     */
+    if (variableArray != null) {
+      for (int i = 0; i < variableArray.length; i++) {
+        sb.append(variableInputs[i].toString());
+        if(i != variableArray.length - 1)
+          sb.append(", ");
+      }
     }
+    
     sb.append(")");
     return sb.toString();
+  }
+  
+  /**
+   * Returns function call in String form, with tabs
+   * @return String tabbed function call
+   */ 
+  public String toStringTabbed(int tabCount) {
+    
+    // String for tabs
+    String tabs;
+    // Builder for tabs
+    StringBuilder bTab = new StringBuilder();
+    // Builder for output
+    StringBuilder bOutput = new StringBuilder();
+    
+    // creates a string for the tabs
+    for (int i = 0; i < tabCount; i++) {
+      bTab.append("\t");
+    }
+    tabs = bTab.toString();
+    
+    bOutput.append(tabs);
+    bOutput.append(function.getName() + "(");
+    /**
+     * Runs through the length of the input expression 
+     */
+    if (variableArray != null) {
+      for (int i = 0; i < variableArray.length; i++) {
+        bOutput.append(variableInputs[i].toString());
+        if(i != variableArray.length - 1)
+          bOutput.append(", ");
+      }
+    }
+    bOutput.append(")");
+    
+    return bOutput.toString();
   }
   
 }
