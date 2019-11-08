@@ -28,3 +28,12 @@ A hierarchy design for the underlying coding structures for beginning programmin
 - interfaces
 
 ![Hierarchy for HW3](https://docs.google.com/drawings/d/e/2PACX-1vRK00OHq4ekkwhoeXacaftN9iWLJH7c7sgQlBOHAACRW-51e0KO61rK1rOsxtSb2bZ7ozc8bQoduY_M/pub?w=1366&h=853)
+
+### Project 4: RailYard
+A program representing a railyard with classification yards that sorts train cars.
+- generic types
+- restricted generics
+- Iterable/Iterator interfaces
+- Comparable interface
+- linked lists and array lists
+- main method
