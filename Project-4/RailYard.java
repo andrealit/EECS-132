@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -43,21 +44,30 @@ public class RailYard<T extends Comparable<? super T>> {
    * @param train (ArrayList) to be sorted
    */ 
   public void cycleSort(T[] train) {
-    
+    for (CollectionYard<T> yard : collectionYards) {
+      yard.cycleSort(train);
+    }
   }
   
   /**
-   * Takes an incoming train as 
+   * Takes an incoming train as a LinkedList
    */ 
   public void cycleSort(List<T> train) {
-    
+    for (CollectionYard<T> yard: collectionYards) {
+      yard.cycleSort(train);
+    }
   }
   
   public void closestSort(T[] train) {
-    
+    for (CollectionYard<T> yard : collectionYards) {
+      yard.closestSort(train);
+    }
   }
   
   public void closestSort(List<T> train) {
+    for (CollectionYard<T> yard : collectionYards) {
+      yard.closestSort(train);
+    }
     
   }
   
