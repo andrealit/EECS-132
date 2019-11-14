@@ -79,5 +79,7 @@ public class HW4Tester {
     s3.cycleSort(trainUnsorted3);
     
     assertArrayEquals(trainSorted3, trainUnsorted3);
+    
+    // Test middle (middle seci)
   }
 }

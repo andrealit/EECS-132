@@ -4,28 +4,31 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * The class CollectionYard represents an ArrayList of LinkedLists of type T
+ * The class ClassificationYard represents an ArrayList of LinkedLists of type T
  * Each linked list represents a track in the collection yard where trains can be sorted
  * This class takes a list or an array of generics, and will sort in order.
  * 
  * @author Andrea Tongsak
  */ 
-public class CollectionYard<T extends Comparable<? super T>> {
+public class ClassificationYard<T extends Comparable<? super T>> {
   
   /** Stores tracks */ 
   private ArrayList<LinkedList<T>> tracks;
   
   /**
-   * Constructor takes the int number of tracks in collection yard and creates LinkedList in the ArrayList
+   * Constructor takes the number of tracks in collection yard and creates LinkedList in the ArrayList for each track
    * @param tracks the number of tracks in collection yard
    */ 
-  public CollectionYard(int numTracks) {
+  public ClassificationYard(int numTracks) {
+    // stores the size of the tracks and avoids array list automatic resizing
     tracks = new ArrayList<LinkedList<T>>(numTracks);
     
     // runs the number of tracks in collection yard adding linked lists
     for (int i = 0; i < numTracks; i++) {
       tracks.add(new LinkedList<T>());
     }
+    
+    
   }
   
   /**
@@ -44,7 +47,7 @@ public class CollectionYard<T extends Comparable<? super T>> {
     this.cycleSort(listToSort);
     Iterator<T> ptr = listToSort.iterator();
     
-    // runs through every train and assigns
+    // runs through every train and assigns ptr 
     for (int i = 0; i < train.length; i++) {
       if (ptr.hasNext()) {
         train[i] = ptr.next();
