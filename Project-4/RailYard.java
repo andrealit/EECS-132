@@ -41,66 +41,73 @@ public class RailYard<T extends Comparable<? super T>> {
   public static void main(String[] args) {
     
     /** Check length of args first */
-    if (args.length == 0) {
-      System.out.println("You entered no input!");
-    } 
-    
+    // smallest viable case is when user gives type and one track (so 
+    if (args.length < 3) {
+      System.out.println("You entered the wrong length for input!");
+      return;
+    }
+      
     /** reading the Type of Sort */
     String sortTypeInput = args[0];
     // exceptions: if user did not input cycle or closest
-    if (sortTypeInput != "cycle" || sortTypeInput != "closest") {
-      System.out.println("You entered the wrong input for Sort, please input either 'cycle' or 'closest'!");
+    if (sortTypeInput.equals("cycle") || sortTypeInput.equals("closest")) {
+      // pass sortTypeInput into class for sorting; after checking
     } else {
-      String sortType = args[0];
+      System.out.println("You entered the wrong input for Sort, please input either 'cycle' or 'closest'!");
     }
-    
+      
     /** reading the Number of Classification Yards */  
     int numOfYards = 0;
     
     try {
       numOfYards = Integer.parseInt(args[1]);
     } catch (NumberFormatException e) {
-      // try again as a double
-      try {
-        numOfYards = (int)(Double.parseDouble(args[1]) + 0.5);
-      } catch (NumberFormatException e2) { 
-        // it is not an int or double
-        System.out.println("You didn't enter a number for Classification Yards!");
-      }
+      System.out.println("You didn't enter a correct input for Classification Yards!");
     }
     
     /** read the Number of Tracks (for each yard) */
     int count = 0;
-    Map<String, Integer> yard = new HashMap<String, Integer>();
+    int place = 0;
+    Map <String, Integer> yard = new HashMap <String, Integer>();
+    
     // check for correct number of inputs 
-    for (int i = 1; i < (numOfYards-1); i++) {
+    for (int i = 0; i < numOfYards; i++) {
       try {
         // starting count of args after 1, assigning the values to a new variable
-        yard.put("yard" + i, Integer.parseInt(args[1 + i]));
+        yard.put("yardTrack" + (i + 1), Integer.parseInt(args[2 + i]));
         count++;
+        place = 2 + i;
       } catch (NumberFormatException e3) {
         try {
-          yard.put("yard" + i, (int)Double.parseDouble(args[1 + i] + 0.5));
+          yard.put("yardTrack" + (i + 1), (int) Double.parseDouble(args[2 + i] + 0.5));
           count++;
+          place = 2 + i;
         } catch (NumberFormatException e4) {
           // not an int or double
-          System.out.println("You didn't enter a number of the tracks!");
+          System.out.println("You didn't enter a number for the tracks!");
         }
       }
     }
     
     if (count != numOfYards) {
       System.out.println("You didn't enter enough tracks for the number of yards specified!");
+      return;
     }
     
-    
+    /** read the Train stream input */
+      
+//    // need a variable that keeps track of place in args input
+//    for (int j = 0; j < numOfYards; j++) {
+//      args[]
+//    }
+//      
     
 
   }
   
   /**
-   * Takes an incoming train as an array and sorts it by closest algorithm. Places each car on a track of classification yard
-   * @param train (ArrayList) to be sorted
+   * Takes an incoming train as an array and sorts it by "Cycle Sort". Places each car on a track of classification yard.
+   * @param train (Array) to be sorted
    */ 
   public void cycleSort(T[] train) {
     for (ClassificationYard<T> yard : classificationYards) {
@@ -109,7 +116,8 @@ public class RailYard<T extends Comparable<? super T>> {
   }
   
   /**
-   * Takes an incoming train as a LinkedList
+   * Takes an incoming train as a LinkedList and sorts it by "Cycle Sort". Places each car on a track of classification yard.
+   * @param train (List) to be sorted
    */ 
   public void cycleSort(List<T> train) {
     for (ClassificationYard<T> yard: classificationYards) {
@@ -117,12 +125,19 @@ public class RailYard<T extends Comparable<? super T>> {
     }
   }
   
+  /**
+   * Takes an incoming train as an array and sorts it by "Closest Sort
+   * @param train (Array) to be sorted
+   */ 
   public void closestSort(T[] train) {
     for (ClassificationYard<T> yard : classificationYards) {
       yard.closestSort(train);
     }
   }
   
+  /**
+   * 
+   */ 
   public void closestSort(List<T> train) {
     for (ClassificationYard<T> yard : classificationYards) {
       yard.closestSort(train);

@@ -80,6 +80,24 @@ public class HW4Tester {
     
     assertArrayEquals(trainSorted3, trainUnsorted3);
     
-    // Test middle (middle seci)
+    // Test middle (middle section scrambled)
+    
+    
+    // can use try catch to check exceptios
+    try {
+      // code that should throw exception
+      fail("");
+    } catch (ArithmeticException e) {
+      // everything is working!
+    } catch (Exception e2) {
+      fail("Threw the exception :<");
+    }
+    
   }
+  
+  /**
+   * Tests the merge method
+   */ 
+  @Test
+  
 }
