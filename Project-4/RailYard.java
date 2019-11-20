@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
 
 /*******************************************************************************************************
  * RailYard Class represents a rail yard with classification yard to sort cars of the incoming trains.
@@ -44,77 +42,93 @@ public class RailYard<T extends Comparable<? super T>> {
 
     }
     
-//    /**
-//     * Takes in which sort (cycle or closest), number of classification yards, number of tracks (for each yard), and various strings
-//     * Also checks validity of command line arguments
-//     *
-//     */
-//    public static void main(String[] args) {
-//
-//        /** Check length of args first */
-//        // smallest viable case is when user gives type and one track (so
-//        if (args.length < 3) {
-//            System.out.println("You entered the wrong length for input!");
-//            return;
-//        }
-//
-//        /** reading the Type of Sort */
-//        String sortTypeInput = args[0];
-//        // exceptions: if user did not input cycle or closest
-//        if (sortTypeInput.equals("cycle") || sortTypeInput.equals("closest")) {
-//            // pass sortTypeInput into class for sorting; after checking
-//        } else {
-//            System.out.println("You entered the wrong input for Sort, please input either 'cycle' or 'closest'!");
-//        }
-//
-//        /** reading the Number of Classification Yards */
-//        int numOfYards = 0;
-//
-//        try {
-//            numOfYards = Integer.parseInt(args[1]);
-//        } catch (NumberFormatException e) {
-//            System.out.println("You didn't enter a correct input for Classification Yards!");
-//        }
-//
-//        /** read the Number of Tracks (for each yard) */
-//        int count = 0;
-//        int place = 0;
-//        Map<String, Integer> yard = new HashMap<String, Integer>();
-//
-//        // check for correct number of inputs
-//        for (int i = 0; i < numOfYards; i++) {
-//            try {
-//                // starting count of args after 1, assigning the values to a new variable
-//                yard.put("yardTrack" + (i + 1), Integer.parseInt(args[2 + i]));
-//                count++;
-//                place = 2 + i;
-//            } catch (NumberFormatException e3) {
-//                try {
-//                    yard.put("yardTrack" + (i + 1), (int) Double.parseDouble(args[2 + i] + 0.5));
-//                    count++;
-//                    place = 2 + i;
-//                } catch (NumberFormatException e4) {
-//                    // not an int or double
-//                    System.out.println("You didn't enter a number for the tracks!");
-//                }
-//            }
-//        }
-//
-//        if (count != numOfYards) {
-//            System.out.println("You didn't enter enough tracks for the number of yards specified!");
-//            return;
-//        }
-//
-//        /** read the Train stream input */
-//
-////    // need a variable that keeps track of place in args input
-////    for (int j = 0; j < numOfYards; j++) {
-////      args[]
-////    }
-////
-//
-//
-//    }
+    /**
+     * Takes in which sort (cycle or closest), number of classification yards, number of tracks (for each yard), and various strings
+     * Also checks validity of command line arguments
+     *
+     */
+    public static void main(String[] args) {
+
+        /** Check length of args first */
+        // smallest viable case is when user gives type and one track (so
+        if (args.length < 3) {
+            System.out.println("You entered the wrong length for input!");
+            return;
+        }
+
+        /** reading the Type of Sort */
+        String sortTypeInput = args[0];
+        // exceptions: if user did not input cycle or closest
+        if (sortTypeInput.equals("cycle") || sortTypeInput.equals("closest")) {
+            // pass sortTypeInput into class for sorting; after checking
+        } else {
+            System.out.println("You entered the wrong input for Sort, please input either 'cycle' or 'closest'!");
+            return;
+        }
+
+        /** reading the Number of Classification Yards */
+        int numOfYards = 0;
+
+        try {
+            numOfYards = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            System.out.println("You didn't enter a correct input for Classification Yards!");
+        }
+
+        /** read the Number of Tracks (for each yard) */
+        int count = 0;
+        int place = 0;
+        // stores the yard array of ints
+        int[] yardInput = new int[numOfYards];
+
+        // check for correct number of inputs
+        for (int i = 0; i < numOfYards; i++) {
+            try {
+                // starting count of args after 1, assigning the values to a new variable
+                yardInput[i] = Integer.parseInt(args[2 + i]);
+                count++;
+                place = 2 + i;
+            } catch (NumberFormatException e3) {
+                // not an int
+                System.out.println("You didn't enter a valid number for the tracks!");
+            }
+        }
+        
+        // makes sure that the each yard had the track specified
+        if (count != numOfYards) {
+            System.out.println("You didn't enter enough tracks for the number of yards specified!");
+            return;
+        }
+
+        /** read the Train stream input */
+
+        // stores the new array
+        List<String> unsortedList = new ArrayList<String>();
+      
+        // need a variable that keeps track of place in args input, reading train
+        for (int j = place + 1; j < args.length; j++) {
+          try {
+            unsortedList.add(args[j]);
+          } catch (IndexOutOfBoundsException e4) {
+            System.out.println("You didn't enter a train!");
+            return;
+          }
+
+        }
+        
+        
+        System.out.println("pre sort:" + unsortedList);
+        
+        /** Pass all variables into the proper methods! Must first create an instance of the Railyard class. */
+        if (sortTypeInput.equals("cycle")) {
+          new RailYard<String>(yardInput).cycleSort(unsortedList);
+        } else if (sortTypeInput.equals("closest")) {
+          new RailYard<String>(yardInput).closestSort(unsortedList);
+        }
+        
+        System.out.println("post sort:" + unsortedList);
+        
+    }
     
 
     /**
@@ -128,14 +142,6 @@ public class RailYard<T extends Comparable<? super T>> {
         return classYard;
     }
 
-
-    /****************************************************************************************************************
-     * Cycle Sort Algorithm: When the train enters the classification yard, the first car is placed on the first track.
-     * For each following car, if the car is greater than or equal to the car that preceded it in the train,
-     * it is placed on the same track as the preceding car. If the car is smaller than the preceding car,
-     * it is placed on the next track of the classification yard, if there is a next track, and the first track
-     * if the preceding car was placed on the last track of the classification yard.
-     ****************************************************************************************************************/
 
     /**
      * cycleSort takes an array of generic type, and sorts the array using cycle sort algorithm,
@@ -267,18 +273,6 @@ public class RailYard<T extends Comparable<? super T>> {
             trackPosition = 0;
         }
     }
-
-
-
-    /****************************************************************************************************************
-     * Closest Sort Algorithm: To determine the track to place a car, we examine the cars at the back of each track.
-     * We chose the track whose back-most car is the largest car that is less than or equal to the car being placed.
-     * If there is no such track, the car is placed on an empty track, if one exists, or onto the track for which
-     * the back car has the smallest value. For example, if the back cars on the four tracks are 5, 9, 3, 7 and
-     * we are placing car 6, it is placed on the same track as 5 because that is the largest back car smaller than 6.
-     * On the other hand, if we are placing 2 we place it after 3 (assuming there are no empty tracks)
-     * because that is the track with the smallest back car.
-     ****************************************************************************************************************/
 
     /**
      * closestSort takes an array of generic type, and sorts the array using closest sort algorithm, which

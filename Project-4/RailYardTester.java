@@ -6,7 +6,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class RailYardTester {
-
+  
     /**
      * tests the closestSort method using an array for a train
      * test many
@@ -80,8 +80,8 @@ public class RailYardTester {
         shouldEqual.add("quince");
         shouldEqual.add("raspberry");
         shouldEqual.add("watermelon");
-        System.out.println("shouldEqual = " + shouldEqual.toString());
-        System.out.println("train       = " + train.toString());
+        //System.out.println("shouldEqual = " + shouldEqual.toString());
+        //System.out.println("train       = " + train.toString());
         assertArrayEquals(shouldEqual.toArray(), train.toArray());
     }
 
@@ -160,8 +160,8 @@ public class RailYardTester {
         shouldEqual.add("quince");
         shouldEqual.add("raspberry");
         shouldEqual.add("watermelon");
-        System.out.println("shouldEqual = " + shouldEqual.toString());
-        System.out.println("train       = " + train.toString());
+        //System.out.println("shouldEqual = " + shouldEqual.toString());
+        //System.out.println("train       = " + train.toString());
         assertArrayEquals(shouldEqual.toArray(), train.toArray());
     }
 
@@ -207,7 +207,7 @@ public class RailYardTester {
 
     /**
      * tests the cycleSort method using an array for a train
-     * test collection yawrd without tracks
+     * test collection yard without tracks
      */
     @Test
     public void testCycleSortArray4() {
@@ -237,7 +237,7 @@ public class RailYardTester {
      */
     @Test
     public void testCycleSortArray6() {
-        Integer[] train = {89, 67, 0, 5, 19, 35, 8}; //integer becuase it has to be comparable
+        Integer[] train = {89, 67, 0, 5, 19, 35, 8}; //integer because it has to be comparable
         int[] tracks = {5, 8, 10};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.cycleSort(train);
@@ -251,7 +251,7 @@ public class RailYardTester {
      */
     @Test
     public void testCycleSortArray7() {
-        Integer[] train = {5, 5, 0, 5, 19, 35, 8}; //integer becuase it has to be comparable
+        Integer[] train = {5, 5, 0, 5, 19, 35, 8}; //integer because it has to be comparable
         int[] tracks = {5, 8, 10};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.cycleSort(train);
@@ -396,23 +396,23 @@ public class RailYardTester {
      */
     @Test
     public void testClosestSortArray() {
-        Integer[] train = {6, 2, 5, 1, 8, 9, 10, 34, 4, 6, 7}; //integer becuase it has to be comparable
+        Integer[] train = {6, 2, 5, 1, 8, 9, 10, 34, 4, 6, 7}; //integer because it has to be comparable
         int[] tracks = {5, 6};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.closestSort(train);
         Integer[] shouldEqual = { 1, 2, 4, 5, 6, 6, 7, 8, 9, 10, 34 };
 
-        System.out.println();
-        System.out.print("train = ");
-        for(int i=0; i< train.length; i++){
-            System.out.print(train[i] +", ");
-        }
-        System.out.println();
-        System.out.print("shouldEqual = ");
-        for(int j=0; j< shouldEqual.length; j++){
-            System.out.print(shouldEqual[j] +", ");
-        }
-        System.out.println();
+//        System.out.println();
+//        System.out.print("train = ");
+//        for(int i=0; i< train.length; i++){
+//            System.out.print(train[i] +", ");
+//        }
+//        System.out.println();
+//        System.out.print("shouldEqual = ");
+//        for(int j=0; j< shouldEqual.length; j++){
+//            System.out.print(shouldEqual[j] +", ");
+//        }
+//        System.out.println();
 
         assertArrayEquals(shouldEqual, train);
     }
@@ -423,7 +423,7 @@ public class RailYardTester {
      */
     @Test
     public void testClosestSortArray2() {
-        Integer[] train = {0,0,0,0}; //integer becuase it has to be comparable
+        Integer[] train = {0,0,0,0}; //integer because it has to be comparable
         int[] tracks = {5, 6};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.closestSort(train);
@@ -445,11 +445,11 @@ public class RailYardTester {
 
     /**
      * tests the closestSort method using an array for a train
-     * test collection yawrd without tracks
+     * test collection yard without tracks
      */
     @Test
     public void testClosestSortArray4() {
-        Integer[] train = {0,0,2,0}; //integer becuase it has to be comparable
+        Integer[] train = {0,0,2,0}; //integer because it has to be comparable
         int[] tracks = {0};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         // railyard exists but does not have any collection yards the user was notified
@@ -461,7 +461,7 @@ public class RailYardTester {
      */
     @Test
     public void testClosestSortArray5() {
-        Integer[] train = {}; //integer becuase it has to be comparable
+        Integer[] train = {}; //integer because it has to be comparable
         int[] tracks = {5, 8, 10};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.closestSort(train);
@@ -475,7 +475,7 @@ public class RailYardTester {
      */
     @Test
     public void testClosestSortArray6() {
-        Integer[] train = {89, 67, 0, 5, 19, 35, 8}; //integer becuase it has to be comparable
+        Integer[] train = {89, 67, 0, 5, 19, 35, 8}; //integer because it has to be comparable
         int[] tracks = {5, 8, 10};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.closestSort(train);
@@ -489,7 +489,7 @@ public class RailYardTester {
      */
     @Test
     public void testClosestSortArray7() {
-        Integer[] train = {5, 5, 0, 5, 19, 35, 8}; //integer becuase it has to be comparable
+        Integer[] train = {5, 5, 0, 5, 19, 35, 8}; //integer because it has to be comparable
         int[] tracks = {5, 8, 10};
         RailYard<Integer> railYard = new RailYard<Integer>(tracks);
         railYard.closestSort(train);
@@ -569,172 +569,225 @@ public class RailYardTester {
         assertArrayEquals(shouldEqual.toArray(), train.toArray());
     }
 
-//    /**
-//     * tests the closestSort method using a linkedList for a train
-//     * test empty train
-//     */
-//    @Test
-//    public void testClosestSortLinkedList2() {
-//        List<Integer> train = new LinkedList<Integer>();
-//        int[] yards = {5, 6};
-//        RailYard<Integer> railYard = new RailYard<Integer>(yards);
-//        railYard.closestSort(train);
-//        List<Integer> shouldEqual = new LinkedList<Integer>();
-//        Assertions.assertArrayEquals(shouldEqual.toArray(), train.toArray());
-//    }
-//
-//    /**
-//     * tests the closestSort method using a linkedList for a train
-//     * test many/negative
-//     */
-//    @Test
-//    public void testClosestSortLinkedList3() {
-//        List<Integer> train = new LinkedList<Integer>();
-//        train.add(6);
-//        train.add(5);
-//        train.add(5);
-//        train.add(5);
-//        train.add(8);
-//        train.add(9);
-//        train.add(-5);
-//        train.add(34);
-//        train.add(-4);
-//        train.add(6);
-//        train.add(0);
-//        int[] yards = {5, 6};
-//        RailYard<Integer> railYard = new RailYard<Integer>(yards);
-//        railYard.closestSort(train);
-//        List<Integer> shouldEqual = new LinkedList<Integer>();
-//        shouldEqual.add(-5);
-//        shouldEqual.add(-4);
-//        shouldEqual.add(0);
-//        shouldEqual.add(5);
-//        shouldEqual.add(5);
-//        shouldEqual.add(5);
-//        shouldEqual.add(6);
-//        shouldEqual.add(6);
-//        shouldEqual.add(8);
-//        shouldEqual.add(9);
-//        shouldEqual.add(34);
-//        Assertions.assertArrayEquals(shouldEqual.toArray(), train.toArray());
-//    }
-//
-//    /**
-//     * Test cases That SHOULD fail
-//     */
-//
-//    /**
-//     * Test works for cycle sort but fails for closest sort
-//     */
-//    @Test
-//    public void testFailClosestSortArray() {
-//        Integer[] train = {3,0,1,-1,-5,-2}; //integer becuase it has to be comparable
-//        int[] tracks = {4};
-//        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
-//        railYard.closestSort(train);
-//        Integer[] shouldEqual = {-5,-2,-1,0,1,3};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * Test works for cycle sort but fails for closest sort
-//     */
-//    @Test
-//    public void testFailCycleSortArray() {
-//        Integer[] train = {3,0,1,-1,-5,-2}; //integer becuase it has to be comparable
-//        int[] tracks = {4};
-//        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
-//        railYard.cycleSort(train);
-//        Integer[] shouldEqual = {-5,-2,-1,0,1,3};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * Test works for closest sort but fails for cycle sort
-//     */
-//    @Test
-//    public void testFailClosestSortArray2() {
-//        Integer[] train = {37,12,8,7,9,10,11,14,7,8,11,12,9}; //integer becuase it has to be comparable
-//        int[] tracks = {4};
-//        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
-//        railYard.closestSort(train);
-//        Integer[] shouldEqual = {7,7,8,8,9,9,10,11,11,12,12,14,37};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * Test works for closest sort but fails for cycle sort
-//     */
-//    @Test
-//    public void testFailCycleSortArray2() {
-//        Integer[] train = {37,12,8,7,9,10,11,14,7,8,11,12,9}; //integer becuase it has to be comparable
-//        int[] tracks = {4};
-//        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
-//        railYard.cycleSort(train);
-//        Integer[] shouldEqual = {7,7,8,8,9,9,10,11,11,12,12,14,37};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * Test different generic and comparable types
-//     */
-//
-//    /**
-//     * tests the cycleSort method using an array for a train
-//     * test many
-//     */
-//    @Test
-//    public void testCycleSortArrayString() {
-//        String[] train = {"p", "l", "h", "a", "b", "f"}; //String becuase it has to be comparable
-//        int[] tracks = {5, 6};
-//        RailYard<String> railYard = new RailYard<String>(tracks);
-//        railYard.cycleSort(train);
-//        String[] shouldEqual = {"a", "b", "f", "h", "l", "p"};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * tests the cycleSort method using an array for a train
-//     * test many
-//     */
-//    @Test
-//    public void testClosestSortArrayString() {
-//        String[] train = {"p", "l", "h", "a", "b", "f"}; //String becuase it has to be comparable
-//        int[] tracks = {5, 6};
-//        RailYard<String> railYard = new RailYard<String>(tracks);
-//        railYard.closestSort(train);
-//        String[] shouldEqual = {"a", "b", "f", "h", "l", "p"};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * tests the cycleSort method using an array for a train
-//     * test many
-//     */
-//    @Test
-//    public void testCycleSortArrayDouble() {
-//        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5}; //double becuase it has to be comparable
-//        int[] tracks = {5, 6};
-//        RailYard<Double> railYard = new RailYard<Double>(tracks);
-//        railYard.cycleSort(train);
-//        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
-//
-//    /**
-//     * tests the cycleSort method using an array for a train
-//     * test many
-//     */
-//    @Test
-//    public void testClosestSortArrayDouble() {
-//        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5}; //double becuase it has to be comparable
-//        int[] tracks = {5, 6};
-//        RailYard<Double> railYard = new RailYard<Double>(tracks);
-//        railYard.cycleSort(train);
-//        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
-//        Assertions.assertArrayEquals(shouldEqual, train);
-//    }
+    /**
+     * tests the closestSort method using a linkedList for a train
+     * test empty train
+     */
+    @Test
+    public void testClosestSortLinkedList2() {
+        List<Integer> train = new LinkedList<Integer>();
+        int[] yards = {5, 6};
+        RailYard<Integer> railYard = new RailYard<Integer>(yards);
+        railYard.closestSort(train);
+        List<Integer> shouldEqual = new LinkedList<Integer>();
+        assertArrayEquals(shouldEqual.toArray(), train.toArray());
+    }
 
+    /**
+     * tests the closestSort method using a linkedList for a train
+     * test many/negative
+     */
+    @Test
+    public void testClosestSortLinkedList3() {
+        List<Integer> train = new LinkedList<Integer>();
+        train.add(6);
+        train.add(5);
+        train.add(5);
+        train.add(5);
+        train.add(8);
+        train.add(9);
+        train.add(-5);
+        train.add(34);
+        train.add(-4);
+        train.add(6);
+        train.add(0);
+        int[] yards = {5, 6};
+        RailYard<Integer> railYard = new RailYard<Integer>(yards);
+        railYard.closestSort(train);
+        List<Integer> shouldEqual = new LinkedList<Integer>();
+        shouldEqual.add(-5);
+        shouldEqual.add(-4);
+        shouldEqual.add(0);
+        shouldEqual.add(5);
+        shouldEqual.add(5);
+        shouldEqual.add(5);
+        shouldEqual.add(6);
+        shouldEqual.add(6);
+        shouldEqual.add(8);
+        shouldEqual.add(9);
+        shouldEqual.add(34);
+        assertArrayEquals(shouldEqual.toArray(), train.toArray());
+    }
+
+    /**
+     * Test cases That SHOULD fail
+     */
+
+    /** 
+     * I don't believe there is a case where the cycle sort works but the closest sort doesn't. 
+     * There are several instances that the closest sort won't work, but not one where cycle sort is sorted while the 
+     * closest can't. 
+     * The cycle sort is a less efficient algorithm of closest sort.
+     * Cycle sort checks the current track to see if the train is larger than the tail, if the train is larger, its 
+     * placed onto the next track, which may or may not be the correct spot. HOWEVER, the closest sort finds the next 
+     * correct place for the train.
+     * Therefore, no case where cycle sort works but not closest.
+     */
+    
+    /**
+     * Test works for cycle sort but fails for closest sort
+     */
+    @Test
+    public void testFailClosestSortArray() {
+        Integer[] train = {3,0,1,-1,-5,-2}; //integer because it has to be comparable
+        int[] tracks = {4};
+        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
+        railYard.closestSort(train);
+        Integer[] shouldEqual = {-5,-2,-1,0,1,3};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * Test works for cycle sort but fails for closest sort
+     */
+    @Test
+    public void testFailCycleSortArray() {
+        Integer[] train = {3,0,1,-1,-5,-2}; //integer because it has to be comparable
+        int[] tracks = {4};
+        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
+        railYard.cycleSort(train);
+        Integer[] shouldEqual = {-5,-2,-1,0,1,3};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * Test works for closest sort but fails for cycle sort
+     */
+    @Test
+    public void testFailClosestSortArray2() {
+        Integer[] train = {37,12,8,7,9,10,11,14,7,8,11,12,9}; //integer because it has to be comparable
+        int[] tracks = {4};
+        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
+        railYard.closestSort(train);
+        Integer[] shouldEqual = {7,7,8,8,9,9,10,11,11,12,12,14,37};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * Test works for closest sort but fails for cycle sort
+     */
+    @Test
+    public void testFailCycleSortArray2() {
+        Integer[] train = {37,12,8,7,9,10,11,14,7,8,11,12,9}; //integer because it has to be comparable
+        int[] tracks = {4};
+        RailYard<Integer> railYard = new RailYard<Integer>(tracks);
+        railYard.cycleSort(train);
+        Integer[] shouldEqual = {7,7,8,8,9,9,10,11,11,12,12,14,37};
+        assertNotEquals(shouldEqual, train);
+    }
+
+    /**
+     * Test different generic and comparable types
+     */
+
+    /**
+     * tests the cycleSort method using an array for a train
+     * test many
+     */
+    @Test
+    public void testCycleSortArrayString2() {
+        String[] train = {"p", "l", "h", "a", "b", "f"}; //String because it has to be comparable
+        int[] tracks = {5, 6};
+        RailYard<String> railYard = new RailYard<String>(tracks);
+        railYard.cycleSort(train);
+        String[] shouldEqual = {"a", "b", "f", "h", "l", "p"};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * tests the cycleSort method using an array for a train
+     * test many
+     */
+    @Test
+    public void testClosestSortArrayString2() {
+        String[] train = {"p", "l", "h", "a", "b", "f"}; //String because it has to be comparable
+        int[] tracks = {5, 6};
+        RailYard<String> railYard = new RailYard<String>(tracks);
+        railYard.closestSort(train);
+        String[] shouldEqual = {"a", "b", "f", "h", "l", "p"};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * tests the cycleSort method using an array for a train
+     * test many
+     */
+    @Test
+    public void testCycleSortArrayDouble() {
+        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5}; //double because it has to be comparable
+        int[] tracks = {5, 6};
+        RailYard<Double> railYard = new RailYard<Double>(tracks);
+        railYard.cycleSort(train);
+        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
+        assertArrayEquals(shouldEqual, train);
+    }
+
+    /**
+     * tests the cycleSort method using an array for a train
+     * test many
+     */
+    @Test
+    public void testClosestSortArrayDouble() {
+        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5}; //double because it has to be comparable
+        int[] tracks = {5, 6};
+        RailYard<Double> railYard = new RailYard<Double>(tracks);
+        railYard.cycleSort(train);
+        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
+        assertArrayEquals(shouldEqual, train);
+    }
+    
+    /**
+     * Tests the constructor
+     * test 0
+     */ 
+    @Test
+    public void testConstructor() {
+        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5};
+        int[] tracks = {};
+        RailYard<Double> railYard = new RailYard<Double>(tracks);
+        railYard.cycleSort(train);
+        Double[] shouldEqual = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5};
+        assertArrayEquals(shouldEqual, train);
+    }
+    
+    /**
+     * Tests the constructor
+     * test 1
+     */ 
+    @Test
+    public void testConstructor1() {
+        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5};
+        int[] tracks = {5};
+        RailYard<Double> railYard = new RailYard<Double>(tracks);
+        railYard.cycleSort(train);
+        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
+        assertArrayEquals(shouldEqual, train);
+    }
+    
+    /**
+     * Tests the constructor
+     * test many
+     */ 
+    @Test
+    public void testConstructorMany() {
+        Double[] train = {6.5, 2.1, 5.3, 1.7, 8.9, 9.7, 10.0, 34.2, 4.3, 6.1, 7.5};
+        int[] tracks = {5, 6, 10};
+        RailYard<Double> railYard = new RailYard<Double>(tracks);
+        railYard.cycleSort(train);
+        Double[] shouldEqual = {1.7, 2.1, 4.3, 5.3, 6.1, 6.5, 7.5, 8.9, 9.7, 10.0, 34.2};
+        assertArrayEquals(shouldEqual, train);
+    }
+    
 
 
 }
