@@ -37,3 +37,9 @@ A program representing a railyard with classification yards that sorts train car
 - Comparable interface
 - linked lists and array lists
 - main method
+
+### Project 5: Gomoku
+A Javafx game using buttons and clicks to simulate a two player Gomoku game.
+- Javafx
+- method reference
+- lambda expression
