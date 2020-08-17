@@ -1,0 +1,13 @@
+Project 1: Correctness
+52/60
+
+Project 1: Readability
+18/20
+No need for comments like /* FIELDS */ in final submission.
+For field comments, just focus on a simple English description. For example "yearlyBenefit is double initialized to 0.0" tells exactly what java is doing with "private double yearlyBenefit = 0.0;" but that's not that useful since we can just look at the Java code.
+Method comments are appropriate.
+Variable naming style looks good.
+Code format looks correct.
+
+Project 1: Testing
+20/20
